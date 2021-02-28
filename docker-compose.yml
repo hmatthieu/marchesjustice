@@ -1,0 +1,6 @@
+version: '3'
+services:
+  landing:
+    build:
+      context: ./
+    image: loi-climat-landing
