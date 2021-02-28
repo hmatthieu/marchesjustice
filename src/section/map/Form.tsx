@@ -4,7 +4,7 @@ import { Field, Form } from "react-final-form";
 import { canSubmit, processError, validate } from "../../technical/form";
 import styled from "styled-components";
 import { Card } from "../../components/Card";
-import { Button } from "../../components/Button";
+import { Button as BaseButton } from "../../components/Button";
 import * as Input from "../../components/input";
 import { Checkbox } from "../../components/input/Checkbox";
 import { useContent } from "../../technical/contentful/content";
@@ -19,6 +19,7 @@ const Container = styled.div`
 const HTMLForm = styled.form`
   display: flex;
   flex-direction: column;
+  pointer-events: all;
 `;
 
 const HiddenInput = styled.input`
@@ -35,25 +36,37 @@ const Label = styled(Input.Label)`
   margin-left: 8px;
 `;
 
+const Button = styled(BaseButton)`
+  margin-top: 24px;
+`;
+
 interface Values {
   EMAIL: string;
   OPT_IN: boolean;
   postal: string;
 }
 
-export const EventForm = () => {
+interface Props {
+  onSubmitPostalCode: (postal: string) => void;
+}
+
+export const EventForm = ({ onSubmitPostalCode }: Props) => {
   const { texts } = useContent();
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = useCallback((values: Values) => {
-    const formData = new FormData(formRef.current);
-    formData.set("OPT_IN", values.OPT_IN ? "1" : "");
-    return fetch(process.env.SEND_IN_BLUE_FORM, {
-      method: "POST",
-      body: formData,
-      mode: "no-cors",
-    });
-  }, []);
+  const handleSubmit = useCallback(
+    (values: Values) => {
+      onSubmitPostalCode(values.postal);
+      const formData = new FormData(formRef.current);
+      formData.set("OPT_IN", values.OPT_IN ? "1" : "");
+      return fetch(process.env.SEND_IN_BLUE_FORM, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
+    },
+    [onSubmitPostalCode]
+  );
 
   return (
     <Container>
@@ -63,10 +76,22 @@ export const EventForm = () => {
           onSubmit={handleSubmit}
           validate={validate({
             EMAIL: {
-              email: true,
+              email: {
+                message: "n'est pas valide.",
+              },
+              presence: {
+                message: "est requis.",
+              },
             },
             postal: {
-              format: /^(?:(?:(?:0[1-9]|[1-8]\d|9[0-4])(?:\d{3})?)|97[1-8]|98[4-9]|‌​‌​2[abAB])$/,
+              format: {
+                pattern: /^(?:(?:(?:0[1-9]|[1-8]\d|9[0-4])(?:\d{3})?)|97[1-8]|98[4-9]|‌​‌​2[abAB])$/,
+                message: "ne semble pas être un code postal valide.",
+              },
+              length: {
+                minimum: 3,
+                message: "^Le code postal doit faire plus de 3 caractères.",
+              },
             },
           })}
         >
@@ -84,7 +109,7 @@ export const EventForm = () => {
                           disabled={formProps.submitting}
                           error={!!error}
                           placeholder={documentToPlainTextString(
-                            texts[TextKey.MAP_FORM_EMAIL]
+                            texts[TextKey.MAP_FORM_EMAIL].document
                           )}
                         />
                       </Input.Errored>
@@ -104,7 +129,7 @@ export const EventForm = () => {
                           disabled={formProps.submitting}
                           error={!!error}
                           placeholder={documentToPlainTextString(
-                            texts[TextKey.MAP_FORM_POSTAL]
+                            texts[TextKey.MAP_FORM_POSTAL].document
                           )}
                         />
                       </Input.Errored>
@@ -127,7 +152,7 @@ export const EventForm = () => {
                         />
                         <Label htmlFor="OPT_IN">
                           {documentToPlainTextString(
-                            texts[TextKey.MAP_FORM_OTIN]
+                            texts[TextKey.MAP_FORM_OTIN].document
                           )}
                         </Label>
                       </InputContainer>
@@ -135,19 +160,16 @@ export const EventForm = () => {
                   );
                 }}
               </Field>
-              <input
-                type="text"
-                name="email_address_check"
-                value=""
-                className="input--hidden"
-              />
+              <HiddenInput type="text" name="email_address_check" value="" />
               <HiddenInput type="hidden" name="locale" value="fr" />
               <HiddenInput type="hidden" name="html_type" value="simple" />
               <Button
                 disabled={!canSubmit(formProps)}
                 loading={formProps.submitting}
               >
-                {documentToPlainTextString(texts[TextKey.MAP_FORM_CTA])}
+                {documentToPlainTextString(
+                  texts[TextKey.MAP_FORM_CTA].document
+                )}
               </Button>
             </HTMLForm>
           )}

@@ -28,17 +28,16 @@ const BaseButton = styled.button`
   height: 60px;
   text-align: center;
   border-radius: 3px;
+  padding: 0 24px;
 
   :focus {
     border: none;
     outline: none;
-    background: none;
   }
 
   :active {
     border: none;
     outline: none;
-    background: none;
     text-decoration: underline;
   }
 

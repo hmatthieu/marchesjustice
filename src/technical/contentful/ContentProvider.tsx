@@ -23,6 +23,7 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
           value {
             raw
           }
+          href
         }
       }
     }
@@ -36,7 +37,10 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
     texts: data.allContentfulText.nodes.reduce(
       (acc, node) => ({
         ...acc,
-        [node.key]: JSON.parse(node.value.raw),
+        [node.key]: {
+          document: JSON.parse(node.value.raw),
+          href: node.href,
+        },
       }),
       {}
     ),

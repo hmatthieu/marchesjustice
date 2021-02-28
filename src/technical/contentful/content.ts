@@ -5,7 +5,10 @@ import { Document } from "@contentful/rich-text-types";
 interface ContentfulData {
   seo: Partial<SEO>;
   texts: {
-    [key: string]: Document;
+    [key: string]: {
+      document: Document;
+      href?: string;
+    };
   };
 }
 

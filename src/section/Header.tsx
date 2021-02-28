@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect, useRef } from "react";
 import { Logo as BaseLogo } from "../assets/images/Logo";
 import styled from "styled-components";
 import { PRIMARY } from "../constant/Colors";
@@ -38,14 +39,24 @@ const TextContainer = styled.div`
 `;
 
 export const Header = () => {
+  const textContainerRef = useRef<HTMLDivElement>(null);
   const { texts } = useContent();
+
+  useEffect(() => {
+    if (textContainerRef.current) {
+      textContainerRef.current.querySelectorAll("a").forEach(element => {
+        element.target = "_blank";
+      });
+    }
+  }, []);
 
   return (
     <Container>
       <Logo className="mx-auto mt-24 w-64" />
       <TextContainer
+        ref={textContainerRef}
         dangerouslySetInnerHTML={{
-          __html: documentToHtmlString(texts[TextKey.HEADER]),
+          __html: documentToHtmlString(texts[TextKey.HEADER].document),
         }}
       />
     </Container>

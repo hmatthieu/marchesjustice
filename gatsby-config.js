@@ -12,7 +12,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: ["SEND_IN_BLUE_FORM"],
+        allowList: [
+          "SEND_IN_BLUE_FORM",
+          "POSITION_STACK_API_KEY",
+          "AIRTABLE_API_KEY",
+        ],
       },
     },
     `gatsby-plugin-react-helmet`,

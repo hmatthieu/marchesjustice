@@ -5,4 +5,5 @@ export enum TextKey {
   MAP_FORM_POSTAL = "map-form-postal",
   MAP_FORM_OTIN = "map-form-optin",
   MAP_FORM_CTA = "map-form-cta",
+  MAP_CTA = "map-cta",
 }
