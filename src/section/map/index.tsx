@@ -11,6 +11,7 @@ import { MapComponent } from "./map-component";
 import { Map as LeafletMap } from "react-leaflet";
 import { Button } from "../../components/Button";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import { Ratio } from "../../components/Ratio";
 
 const HeaderContainer = styled.div`
   color: ${PRIMARY};
@@ -21,8 +22,13 @@ const HeaderContainer = styled.div`
 `;
 
 const MapContainer = styled.div`
-  position: relative;
   margin-top: 400px;
+`;
+
+const MapContent = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 `;
 
 const FormContainer = styled.div`
@@ -97,25 +103,29 @@ export const Map = () => {
         }}
       />
       <MapContainer>
-        {typeof window === "undefined" ? (
-          <p>Hello World</p>
-        ) : (
-          <MapComponent ref={mapRef} />
-        )}
-        <FormContainer>
-          <EventForm onSubmitPostalCode={handlePostalCode} />
-        </FormContainer>
-        <CTAContainer>
-          <Button
-            {...({
-              href: texts[TextKey.MAP_CTA].href,
-              target: "_blank",
-              as: "a",
-            } as any)}
-          >
-            {documentToPlainTextString(texts[TextKey.MAP_CTA].document)}
-          </Button>
-        </CTAContainer>
+        <Ratio ratio={10 / 6}>
+          <MapContent>
+            {typeof global.window === "undefined" ? (
+              <div style={{ width: "100%", height: "100%" }} />
+            ) : (
+              <MapComponent ref={mapRef} />
+            )}
+            <FormContainer>
+              <EventForm onSubmitPostalCode={handlePostalCode} />
+            </FormContainer>
+            <CTAContainer>
+              <Button
+                {...({
+                  href: texts[TextKey.MAP_CTA].href,
+                  target: "_blank",
+                  as: "a",
+                } as any)}
+              >
+                {documentToPlainTextString(texts[TextKey.MAP_CTA].document)}
+              </Button>
+            </CTAContainer>
+          </MapContent>
+        </Ratio>
       </MapContainer>
     </section>
   );

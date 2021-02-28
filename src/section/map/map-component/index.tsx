@@ -7,18 +7,9 @@ import {
   Popup as PopupLeaflet,
   TileLayer,
 } from "react-leaflet";
-import { base, EVENTS, EVENTS_PUBLIC } from "../../../technical/airtable";
 import "./style.css";
 import { Fonts } from "../../../assets/fonts";
 import { Icon } from "leaflet";
-
-const markerIcon = new Icon({
-  iconUrl: require("../../../assets/images/marker.svg"),
-  iconRetinaUrl: require("../../../assets/images/marker.svg"),
-  iconSize: [40, 50],
-  iconAnchor: [20, 50],
-  popupAnchor: [0, -50],
-});
 
 const MapContainer = styled.div`
   height: 100%;
@@ -62,37 +53,28 @@ interface MarkerData {
   position: [number, number];
 }
 
-function fetchAllMarkers(): Promise<MarkerData[]> {
-  return new Promise((resolve, reject) => {
-    const markers: MarkerData[] = [];
-    base(EVENTS)
-      .select({
-        view: EVENTS_PUBLIC,
-      })
-      .eachPage(
-        (records, fetchNextPage) => {
-          markers.push(
-            ...records.map(record => ({
-              text: record.get("Ville"),
-              href: record.get("URL"),
-              position: [record.get("Latitude"), record.get("Longitude")],
-            }))
-          );
-
-          fetchNextPage();
-        },
-        err => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(markers);
-          }
-        }
-      );
-  });
+async function fetchAllMarkers(): Promise<MarkerData[]> {
+  const response = await fetch(
+    "https://hub.lemouvement.ong/a/loiclimat_28mars"
+  );
+  const data = await response.json();
+  return data.map(({ Ville, URL, Latitude, Longitude }) => ({
+    text: Ville,
+    href: URL,
+    position: [Latitude, Longitude],
+  }));
 }
 
 export const MapComponent = forwardRef<LeafletMap>((_, ref) => {
+  const [markerIcon] = useState(
+    new Icon({
+      iconUrl: require("../../../assets/images/marker.svg"),
+      iconRetinaUrl: require("../../../assets/images/marker.svg"),
+      iconSize: [40, 50],
+      iconAnchor: [20, 50],
+      popupAnchor: [0, -50],
+    })
+  );
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
   useEffect(() => {
