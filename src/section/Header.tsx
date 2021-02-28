@@ -9,6 +9,7 @@ import { TextKey } from "../technical/contentful/text";
 
 const Container = styled.header`
   max-width: 1024px;
+  padding: 0 24px;
   margin: 0 auto;
 `;
 
@@ -18,7 +19,7 @@ const Logo = styled(BaseLogo)`
 
 const TextContainer = styled.div`
   text-align: center;
-  text-size: 18px;
+  font-size: 18px;
 
   p {
     margin: 2rem 0;
@@ -52,7 +53,7 @@ export const Header = () => {
 
   return (
     <Container>
-      <Logo className="mx-auto mt-24 w-64" />
+      <Logo className="mx-auto mt-12 w-64" />
       <TextContainer
         ref={textContainerRef}
         dangerouslySetInnerHTML={{

@@ -1,46 +1,53 @@
 import * as React from "react";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { EventForm } from "./Form";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { useContent } from "../../technical/contentful/content";
 import { TextKey } from "../../technical/contentful/text";
 import styled from "styled-components";
-import { PRIMARY } from "../../constant/Colors";
-import { Fonts } from "../../assets/fonts";
 import { MapComponent } from "./map-component";
 import { Map as LeafletMap } from "react-leaflet";
 import { Button } from "../../components/Button";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import { Ratio } from "../../components/Ratio";
+import { Share } from "./Share";
+import { TitleContainer } from "../../components/TitleContainer";
+import mapPlaceholder from "../../assets/images/map-placeholder.png";
+import { TABLET } from "../../constant/Breakpoints";
 
-const HeaderContainer = styled.div`
-  color: ${PRIMARY};
-  font-family: ${Fonts.KAWARU};
-  font-size: 28px;
-  text-align: center;
-  margin-bottom: 64px;
+const Section = styled.section`
+  margin-bottom: 124px;
 `;
 
-const MapContainer = styled.div`
-  margin-top: 400px;
-`;
-
-const MapContent = styled.div`
+const MapContainer = styled.div<{ smallScreen: boolean }>`
+  ${({ smallScreen }) =>
+    !smallScreen &&
+    `
+    margin-top: 350px;
+  `}
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 600px;
 `;
 
-const FormContainer = styled.div`
-  position: absolute;
+const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const FormContainer = styled.div<{ smallScreen: boolean }>`
   z-index: 9999;
   top: 0;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  transform: translateY(-80%);
   pointer-events: none;
+  position: absolute;
+  transform: translateY(-80%);
+
+  > * {
+    z-index: 9999;
+  }
 `;
 
 const CTAContainer = styled.div`
@@ -57,6 +64,10 @@ interface PositionStackData {
       longitude: number;
     }
   ];
+}
+
+function isSmallScreen() {
+  return typeof window !== "undefined" && window.innerWidth < TABLET;
 }
 
 async function fetchPosition(postalCode: string) {
@@ -95,38 +106,39 @@ export const Map = () => {
     }
   }, []);
 
+  const [isMounted, setMounted] = useState(typeof window !== "undefined");
+  const [smallScreen, setSmallScreen] = useState(isSmallScreen());
+
+  useEffect(() => {
+    setSmallScreen(isSmallScreen());
+    setMounted(true);
+  }, [setSmallScreen, setMounted]);
+
   return (
-    <section>
-      <HeaderContainer
-        dangerouslySetInnerHTML={{
-          __html: documentToHtmlString(texts[TextKey.MAP_HEADER].document),
-        }}
-      />
-      <MapContainer>
-        <Ratio ratio={10 / 6}>
-          <MapContent>
-            {typeof global.window === "undefined" ? (
-              <div style={{ width: "100%", height: "100%" }} />
-            ) : (
-              <MapComponent ref={mapRef} />
-            )}
-            <FormContainer>
-              <EventForm onSubmitPostalCode={handlePostalCode} />
-            </FormContainer>
-            <CTAContainer>
-              <Button
-                {...({
-                  href: texts[TextKey.MAP_CTA].href,
-                  target: "_blank",
-                  as: "a",
-                } as any)}
-              >
-                {documentToPlainTextString(texts[TextKey.MAP_CTA].document)}
-              </Button>
-            </CTAContainer>
-          </MapContent>
-        </Ratio>
+    <Section>
+      <TitleContainer document={texts[TextKey.MAP_HEADER].document} />
+      {smallScreen && <EventForm onSubmitPostalCode={handlePostalCode} />}
+      <MapContainer smallScreen={smallScreen}>
+        {!smallScreen && (
+          <FormContainer smallScreen={smallScreen}>
+            <EventForm onSubmitPostalCode={handlePostalCode} />
+          </FormContainer>
+        )}
+        {isMounted ? <MapPlaceholder /> : <MapComponent ref={mapRef} />}
+        <CTAContainer>
+          <Button
+            {...({
+              href: texts[TextKey.MAP_CTA].href,
+              target: "_blank",
+              as: "a",
+              shadow: true,
+            } as any)}
+          >
+            {documentToPlainTextString(texts[TextKey.MAP_CTA].document)}
+          </Button>
+        </CTAContainer>
       </MapContainer>
-    </section>
+      <Share />
+    </Section>
   );
 };

@@ -70,7 +70,7 @@ export const EventForm = ({ onSubmitPostalCode }: Props) => {
 
   return (
     <Container>
-      <Card>
+      <Card className="px-4 sm:px-12 py-12">
         <Form
           id="sib-form"
           onSubmit={handleSubmit}
@@ -97,26 +97,24 @@ export const EventForm = ({ onSubmitPostalCode }: Props) => {
         >
           {formProps => (
             <HTMLForm ref={formRef} onSubmit={formProps.handleSubmit}>
-              <InputContainer>
-                <Field id="EMAIL" name="EMAIL" type="text">
-                  {({ input, meta }) => {
-                    const error = processError(meta);
+              <Field id="EMAIL" name="EMAIL" type="text">
+                {({ input, meta }) => {
+                  const error = processError(meta);
 
-                    return (
-                      <Input.Errored error={error}>
-                        <Input.Text
-                          {...input}
-                          disabled={formProps.submitting}
-                          error={!!error}
-                          placeholder={documentToPlainTextString(
-                            texts[TextKey.MAP_FORM_EMAIL].document
-                          )}
-                        />
-                      </Input.Errored>
-                    );
-                  }}
-                </Field>
-              </InputContainer>
+                  return (
+                    <Input.Errored error={error}>
+                      <Input.Text
+                        {...input}
+                        disabled={formProps.submitting}
+                        error={!!error}
+                        placeholder={documentToPlainTextString(
+                          texts[TextKey.MAP_FORM_EMAIL].document
+                        )}
+                      />
+                    </Input.Errored>
+                  );
+                }}
+              </Field>
               <InputContainer>
                 <Field name="postal" type="text">
                   {({ input, meta }) => {

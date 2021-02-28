@@ -13,7 +13,11 @@ const Loading = styled(LoadingIcon)`
   margin-right: 12px;
 `;
 
-const BaseButton = styled.button`
+interface ButtonBaseProps {
+  shadow?: boolean;
+}
+
+const BaseButton = styled.button<ButtonBaseProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,8 +33,9 @@ const BaseButton = styled.button`
   text-align: center;
   border-radius: 3px;
   padding: 0 24px;
-
-  :focus {
+  ${({ shadow }: ButtonBaseProps) =>
+      shadow && `box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);`}
+    :focus {
     border: none;
     outline: none;
   }
@@ -61,7 +66,8 @@ const LoadingContainer = styled.div`
 `;
 
 export interface ButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">,
+    ButtonBaseProps {
   loading?: boolean;
 }
 

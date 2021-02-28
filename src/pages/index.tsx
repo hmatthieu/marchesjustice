@@ -11,6 +11,8 @@ import { FlamaFontFace } from "../assets/fonts/flama";
 import { Fonts } from "../assets/fonts";
 import { Map } from "../section/map";
 import { KawaruFontFace } from "../assets/fonts/kawaru";
+import { Actions } from "../section/Actions";
+import { Footer } from "../section/Footer";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -60,6 +62,8 @@ const Index = () => {
       <KawaruFontFace />
       <Header />
       <Map />
+      <Actions />
+      <Footer />
     </>
   );
 };

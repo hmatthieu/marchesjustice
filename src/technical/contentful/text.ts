@@ -5,5 +5,12 @@ export enum TextKey {
   MAP_FORM_POSTAL = "map-form-postal",
   MAP_FORM_OTIN = "map-form-optin",
   MAP_FORM_CTA = "map-form-cta",
+  MAP_SHARE_VOLUNTEER = "map-share-volunteer",
+  MAP_SHARE_FACEBOOK = "map-share-facebook",
+  MAP_SHARE_TWITTER = "map-share-twitter",
+  MAP_SHARE_WHATSAPP = "map-share-whatsapp",
   MAP_CTA = "map-cta",
+  ACTIONS_HEADER = "actions-header",
+  LEGALS = "legals",
+  LEGALS_CTA = "legals-cta",
 }
