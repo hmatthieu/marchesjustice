@@ -10,14 +10,13 @@ import { Button } from "../../components/Button";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { Share } from "./Share";
 import { TitleContainer } from "../../components/TitleContainer";
-import mapPlaceholder from "../../assets/images/map-placeholder.png";
 import { TABLET } from "../../constant/Breakpoints";
 
 const Section = styled.section`
   margin-bottom: 124px;
 `;
 
-const MapContainer = styled.div<{ smallScreen: boolean }>`
+const Container = styled.div<{ smallScreen: boolean }>`
   ${({ smallScreen }) =>
     !smallScreen &&
     `
@@ -26,12 +25,6 @@ const MapContainer = styled.div<{ smallScreen: boolean }>`
   position: relative;
   width: 100%;
   height: 600px;
-`;
-
-const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 const FormContainer = styled.div<{ smallScreen: boolean }>`
@@ -44,10 +37,6 @@ const FormContainer = styled.div<{ smallScreen: boolean }>`
   pointer-events: none;
   position: absolute;
   transform: translateY(-80%);
-
-  > * {
-    z-index: 9999;
-  }
 `;
 
 const CTAContainer = styled.div`
@@ -106,25 +95,23 @@ export const Map = () => {
     }
   }, []);
 
-  const [isMounted, setMounted] = useState(typeof window !== "undefined");
   const [smallScreen, setSmallScreen] = useState(isSmallScreen());
 
   useEffect(() => {
     setSmallScreen(isSmallScreen());
-    setMounted(true);
-  }, [setSmallScreen, setMounted]);
+  }, [setSmallScreen]);
 
   return (
     <Section>
       <TitleContainer document={texts[TextKey.MAP_HEADER].document} />
       {smallScreen && <EventForm onSubmitPostalCode={handlePostalCode} />}
-      <MapContainer smallScreen={smallScreen}>
+      <Container smallScreen={smallScreen}>
         {!smallScreen && (
           <FormContainer smallScreen={smallScreen}>
             <EventForm onSubmitPostalCode={handlePostalCode} />
           </FormContainer>
         )}
-        {!isMounted ? <MapPlaceholder /> : <MapComponent ref={mapRef} />}
+        <MapComponent ref={mapRef} />
         <CTAContainer>
           <Button
             {...({
@@ -137,7 +124,7 @@ export const Map = () => {
             {documentToPlainTextString(texts[TextKey.MAP_CTA].document)}
           </Button>
         </CTAContainer>
-      </MapContainer>
+      </Container>
       <Share />
     </Section>
   );

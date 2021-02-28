@@ -5,6 +5,7 @@ import { TextKey } from "../technical/contentful/text";
 import styled from "styled-components";
 import { PRIMARY } from "../constant/Colors";
 import { Fonts } from "../assets/fonts";
+import { Ratio } from "../components/Ratio";
 
 const data = [
   {
@@ -43,15 +44,22 @@ const ItemBackground = styled.div<{ backgroundImg: string }>`
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 41.15%, #000000 100%), url('${({
     backgroundImg,
   }) => backgroundImg}');
+    background-size: cover;
+    background-position: center;
+  width: 380px;
+  max-width: 90vw;
+  margin: 0 10px;
+  margin-bottom: 50px;
+`;
+
+const ItemContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  width: 380px;
-  height: 380px;
-  margin: 0 10px;
-  margin-bottom: 50px;
   padding: 24px 40px;
   color: white;
+  width: 100%;
+  height: 100%;
 `;
 
 const ItemTag = styled.mark`
@@ -74,9 +82,13 @@ const ItemText = styled.p`
 
 const Item = ({ action }: { action: Action }) => (
   <ItemBackground backgroundImg={action.img}>
-    <ItemTag>{action.tag}</ItemTag>
-    <ItemTitle>{action.title}</ItemTitle>
-    <ItemText>{action.description}</ItemText>
+    <Ratio ratio={1}>
+      <ItemContent>
+        <ItemTag>{action.tag}</ItemTag>
+        <ItemTitle>{action.title}</ItemTitle>
+        <ItemText>{action.description}</ItemText>
+      </ItemContent>
+    </Ratio>
   </ItemBackground>
 );
 

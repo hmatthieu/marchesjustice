@@ -1,5 +1,6 @@
 import "../custom-types/assets.d";
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { BLACK } from "../constant/Colors";
 import Helmet from "react-helmet";
@@ -24,6 +25,10 @@ const GlobalStyle = createGlobalStyle`
 
 const Index = () => {
   const { seo } = useContent();
+  const [isMounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, [setMounted]);
 
   return (
     <>
@@ -61,7 +66,7 @@ const Index = () => {
       <FlamaFontFace />
       <KawaruFontFace />
       <Header />
-      <Map />
+      {isMounted && <Map />}
       <Actions />
       <Footer />
     </>

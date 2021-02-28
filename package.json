@@ -13,7 +13,7 @@
     "@types/react-helmet": "^5.0.15",
     "@types/react-leaflet": "^2.5.2",
     "@types/styled-components": "^5.0.1",
-    "babel-plugin-styled-components": "^1.10.7",
+    "babel-plugin-styled-components": "^1.12.0",
     "contentful": "^8.1.7",
     "dotenv": "^8.2.0",
     "final-form": "^4.20.1",
@@ -25,7 +25,7 @@
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-react-leaflet": "^2.0.13",
     "gatsby-plugin-sharp": "^2.4.3",
-    "gatsby-plugin-styled-components": "^3.1.20",
+    "gatsby-plugin-styled-components": "^3.10.0",
     "gatsby-plugin-typescript": "^2.2.2",
     "gatsby-source-contentful": "^4.6.3",
     "gatsby-source-filesystem": "^2.1.46",
@@ -39,7 +39,7 @@
     "react-final-form": "^6.5.2",
     "react-helmet": "^5.2.1",
     "react-leaflet": "^2.8.0",
-    "styled-components": "^5.0.1",
+    "styled-components": "^5.2.1",
     "validate.js": "^0.13.1"
   },
   "devDependencies": {
