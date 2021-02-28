@@ -17,6 +17,14 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
           }
         }
       }
+      allContentfulText {
+        nodes {
+          key
+          value {
+            raw
+          }
+        }
+      }
     }
   `);
 
@@ -25,6 +33,13 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
       ...data.allContentfulSeo.nodes[0],
       image: data.allContentfulSeo.nodes[0].image.fixed.src,
     },
+    texts: data.allContentfulText.nodes.reduce(
+      (acc, node) => ({
+        ...acc,
+        [node.key]: JSON.parse(node.value.raw),
+      }),
+      {}
+    ),
   };
 
   return (

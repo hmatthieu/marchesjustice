@@ -5,6 +5,8 @@
   "version": "0.1.0",
   "author": "Matthieu Hocquart",
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^14.1.2",
+    "@contentful/rich-text-types": "^14.1.2",
     "@types/lodash.chunk": "^4.2.6",
     "@types/lodash.throttle": "^4.1.6",
     "@types/react-helmet": "^5.0.15",

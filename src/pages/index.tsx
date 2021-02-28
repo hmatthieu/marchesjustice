@@ -6,11 +6,15 @@ import Helmet from "react-helmet";
 import favicon from "../assets/images/favicon.png";
 import { ContentProvider } from "../technical/contentful/ContentProvider";
 import { useContent } from "../technical/contentful/content";
+import { Header } from "../section/Header";
+import { FlamaFontFace } from "../assets/fonts/flama";
+import { Fonts } from "../assets/fonts";
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     color: ${BLACK};
+    font-family: ${Fonts.FLAMA};
   }
 `;
 
@@ -50,6 +54,8 @@ const Index = () => {
         ]}
       />
       <GlobalStyle />
+      <FlamaFontFace />
+      <Header />
     </>
   );
 };
