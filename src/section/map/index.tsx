@@ -124,7 +124,7 @@ export const Map = () => {
             <EventForm onSubmitPostalCode={handlePostalCode} />
           </FormContainer>
         )}
-        {isMounted ? <MapPlaceholder /> : <MapComponent ref={mapRef} />}
+        {!isMounted ? <MapPlaceholder /> : <MapComponent ref={mapRef} />}
         <CTAContainer>
           <Button
             {...({
