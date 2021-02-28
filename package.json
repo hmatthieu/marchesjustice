@@ -37,7 +37,11 @@
   },
   "devDependencies": {
     "@svgr/cli": "^4.3.3",
-    "prettier": "^1.19.1"
+    "autoprefixer": "^10.2.4",
+    "gatsby-plugin-postcss": "^3.7.0",
+    "postcss": "^8.2.6",
+    "prettier": "^1.19.1",
+    "tailwindcss": "^2.0.3"
   },
   "keywords": [
     "gatsby"
