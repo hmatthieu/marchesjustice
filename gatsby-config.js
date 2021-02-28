@@ -12,7 +12,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: [""],
+        allowList: ["SEND_IN_BLUE_FORM"],
       },
     },
     `gatsby-plugin-react-helmet`,

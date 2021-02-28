@@ -9,6 +9,8 @@ import { useContent } from "../technical/contentful/content";
 import { Header } from "../section/Header";
 import { FlamaFontFace } from "../assets/fonts/flama";
 import { Fonts } from "../assets/fonts";
+import { Map } from "../section/map";
+import { KawaruFontFace } from "../assets/fonts/kawaru";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -55,7 +57,9 @@ const Index = () => {
       />
       <GlobalStyle />
       <FlamaFontFace />
+      <KawaruFontFace />
       <Header />
+      <Map />
     </>
   );
 };
