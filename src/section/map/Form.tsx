@@ -91,7 +91,7 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
 
   return (
     <Container className={className}>
-      <Card className="px-8 sm:px-12 py-12">
+      <Card className="px-8 sm:px-12 py-12 relative">
         <Form
           onSubmit={handleSubmit}
           validate={validate({
