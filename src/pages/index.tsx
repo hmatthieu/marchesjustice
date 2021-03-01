@@ -18,6 +18,7 @@ const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
   width: 100%;
   height: 600px;
   object-fit: cover;
+  margin-bottom: 226px;
 `;
 
 const GlobalStyle = createGlobalStyle`
