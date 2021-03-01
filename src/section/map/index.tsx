@@ -56,6 +56,7 @@ interface PositionStackData {
     {
       latitude: number;
       longitude: number;
+      country_code: string;
     }
   ];
 }
@@ -74,10 +75,8 @@ async function fetchPosition(postalCode: string) {
     }
   );
   if (response.status === 200) {
-    const {
-      data: [position],
-    }: PositionStackData = await response.json();
-    return position;
+    const { data }: PositionStackData = await response.json();
+    return data.filter(({ country_code }) => country_code === "FRA")[0];
   } else {
     throw new Error(response.statusText);
   }
