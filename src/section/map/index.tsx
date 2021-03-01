@@ -149,7 +149,11 @@ export const Map = () => {
         <FormContainer className="hidden md:block">
           <EventForm onSubmitPostalCode={handlePostalCode} />
         </FormContainer>
-        {isMounted ? <MapComponent markers={markers} /> : <MapPlaceholder />}
+        {isMounted ? (
+          <MapComponent ref={mapRef} markers={markers} />
+        ) : (
+          <MapPlaceholder />
+        )}
         <CTAContainer>
           <Button
             {...({
