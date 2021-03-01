@@ -5,3 +5,12 @@
  */
 
 // You can delete this file if you're not using it
+const fs = require("fs");
+
+exports.onPostBuild = () => {
+  fs.copyFile(`./firebase.json`, `./public/firebase.json`, err => {
+    if (err) {
+      throw err;
+    }
+  });
+};
