@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Image } from "../technical/contentful/image";
 import styled from "styled-components";
 import { Entry } from "../technical/contentful/entry";
@@ -27,6 +27,16 @@ const Img = styled.img<{
 export const ContentfulImage = ({ image, ...props }: Props) => {
   const [loaded, setLoaded] = useState(false);
   const handleLoad = useCallback(() => setLoaded(true), []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoaded(true);
+    }, 10000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [setLoaded]);
 
   if (!image.fields.fixed) {
     return (

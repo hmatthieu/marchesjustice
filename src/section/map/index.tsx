@@ -61,15 +61,18 @@ interface PositionStackData {
 }
 
 async function fetchPosition(postalCode: string) {
-  const response = await fetch("http://example.com", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      postalCode,
-    }),
-  });
+  const response = await fetch(
+    "https://us-central1-loi-climat.cloudfunctions.net/forwards",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        postalCode,
+      }),
+    }
+  );
   if (response.status === 200) {
     const {
       data: [position],
