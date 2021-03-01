@@ -105,7 +105,7 @@ export const Map = () => {
     }
     try {
       const position = await fetchPosition(postalCode);
-      currentMap.leafletElement.setView(
+      currentMap.leafletElement.flyTo(
         {
           lat: position.latitude,
           lng: position.longitude,
