@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useCallback, useRef } from "react";
+import { HTMLProps, useCallback, useRef } from "react";
 import { Field, Form } from "react-final-form";
 import { canSubmit, processError, validate } from "../../technical/form";
 import styled from "styled-components";
@@ -48,9 +48,10 @@ interface Values {
 
 interface Props {
   onSubmitPostalCode: (postal: string) => void;
+  className?: HTMLProps<HTMLDivElement>["className"];
 }
 
-export const EventForm = ({ onSubmitPostalCode }: Props) => {
+export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
   const { texts } = useContent();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -69,7 +70,7 @@ export const EventForm = ({ onSubmitPostalCode }: Props) => {
   );
 
   return (
-    <Container>
+    <Container className={className}>
       <Card className="px-8 sm:px-12 py-12">
         <Form
           id="sib-form"

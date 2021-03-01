@@ -10,7 +10,6 @@ import { Button } from "../../components/Button";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { Share } from "./Share";
 import { TitleContainer } from "../../components/TitleContainer";
-import { TABLET } from "../../constant/Breakpoints";
 import mapPlaceholder from "../../assets/images/map-placeholder.png";
 
 const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
@@ -23,18 +22,14 @@ const Section = styled.section`
   margin-bottom: 124px;
 `;
 
-const Container = styled.div<{ smallScreen: boolean }>`
-  ${({ smallScreen }) =>
-    !smallScreen &&
-    `
-    margin-top: 350px;
-  `}
+const Container = styled.div`
   position: relative;
   width: 100%;
   height: 600px;
+  min-height: 600px;
 `;
 
-const FormContainer = styled.div<{ smallScreen: boolean }>`
+const FormContainer = styled.div`
   z-index: 9999;
   top: 0;
   left: 0;
@@ -60,10 +55,6 @@ interface PositionStackData {
       longitude: number;
     }
   ];
-}
-
-function isSmallScreen() {
-  return typeof window !== "undefined" && window.innerWidth < TABLET;
 }
 
 async function fetchPosition(postalCode: string) {
@@ -102,24 +93,23 @@ export const Map = () => {
     }
   }, []);
 
-  const [smallScreen, setSmallScreen] = useState(isSmallScreen());
   const [isMounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setSmallScreen(isSmallScreen());
     setMounted(true);
-  }, [setSmallScreen]);
+  }, [setMounted]);
 
   return (
     <Section>
       <TitleContainer document={texts[TextKey.MAP_HEADER].document} />
-      {smallScreen && <EventForm onSubmitPostalCode={handlePostalCode} />}
-      <Container smallScreen={smallScreen}>
-        {!smallScreen && (
-          <FormContainer smallScreen={smallScreen}>
-            <EventForm onSubmitPostalCode={handlePostalCode} />
-          </FormContainer>
-        )}
+      <EventForm
+        className="block md:hidden"
+        onSubmitPostalCode={handlePostalCode}
+      />
+      <Container className="mt-0 md:mt-64">
+        <FormContainer className="hidden md:block">
+          <EventForm onSubmitPostalCode={handlePostalCode} />
+        </FormContainer>
         {isMounted ? <MapComponent /> : <MapPlaceholder />}
         <CTAContainer>
           <Button
