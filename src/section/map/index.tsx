@@ -61,9 +61,15 @@ interface PositionStackData {
 }
 
 async function fetchPosition(postalCode: string) {
-  const response = await fetch(
-    `https://api.positionstack.com/v1/forward?access_key=${process.env.POSITION_STACK_API_KEY}&query=${postalCode}&limit=1`
-  );
+  const response = await fetch("http://example.com", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      postalCode,
+    }),
+  });
   if (response.status === 200) {
     const {
       data: [position],
