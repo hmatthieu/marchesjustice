@@ -38,6 +38,7 @@ export const Share = () => {
             as: "a",
             shadow: true,
             small: true,
+            rel: "noopener",
           } as any)}
           className="sm:w-64 w-full"
         >

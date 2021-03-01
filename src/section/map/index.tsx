@@ -161,6 +161,7 @@ export const Map = () => {
               target: "_blank",
               as: "a",
               shadow: true,
+              rel: "noopener",
             } as any)}
             className="sm:w-auto w-full"
           >

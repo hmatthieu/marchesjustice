@@ -86,7 +86,7 @@ export const MapComponent = forwardRef<LeafletMap, Props>(
               icon={markerIcon}
             >
               <Popup>
-                <Link href={marker.href} target="_blank">
+                <Link href={marker.href} rel="noopener" target="_blank">
                   {marker.text}
                 </Link>
               </Popup>

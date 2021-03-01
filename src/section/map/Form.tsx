@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HTMLProps, useCallback, useRef } from "react";
+import { HTMLProps, useCallback, useRef, useState } from "react";
 import { Field, Form } from "react-final-form";
 import { canSubmit, processError, validate } from "../../technical/form";
 import styled from "styled-components";
@@ -68,7 +68,10 @@ interface Props {
   className?: HTMLProps<HTMLDivElement>["className"];
 }
 
+let instanceCount = 0;
+
 export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
+  const [instanceId] = useState(instanceCount++);
   const { texts } = useContent();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -90,7 +93,6 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
     <Container className={className}>
       <Card className="px-8 sm:px-12 py-12">
         <Form
-          id="sib-form"
           onSubmit={handleSubmit}
           validate={validate({
             EMAIL: {
@@ -115,7 +117,7 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
         >
           {formProps => (
             <HTMLForm ref={formRef} onSubmit={formProps.handleSubmit}>
-              <Field id="EMAIL" name="EMAIL" type="text">
+              <Field name="EMAIL" type="text">
                 {({ input, meta }) => {
                   const error = processError(meta);
 
@@ -154,7 +156,7 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
                 </Field>
               </InputContainer>
 
-              <Field id="OPT_IN" name="OPT_IN" type="checkbox">
+              <Field name="OPT_IN" type="checkbox">
                 {({ input, meta }) => {
                   const error = processError(meta);
 
@@ -164,9 +166,9 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
                         <Checkbox
                           {...input}
                           disabled={formProps.submitting}
-                          id="OPT_IN"
+                          id={`OPT_IN_${instanceId}`}
                         />
-                        <Label htmlFor="OPT_IN">
+                        <Label htmlFor={`OPT_IN_${instanceId}`}>
                           {documentToPlainTextString(
                             texts[TextKey.MAP_FORM_OTIN].document
                           )}
