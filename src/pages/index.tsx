@@ -1,7 +1,6 @@
 import "../custom-types/assets.d";
 import * as React from "react";
-import { useEffect, useState } from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import { BLACK } from "../constant/Colors";
 import Helmet from "react-helmet";
 import favicon from "../assets/images/favicon.png";
@@ -12,14 +11,6 @@ import { FLAMA } from "../constant/Fonts";
 import { Map } from "../section/map";
 import { Actions } from "../section/Actions";
 import { Footer } from "../section/Footer";
-import mapPlaceholder from "../assets/images/map-placeholder.png";
-
-const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-  margin-bottom: 226px;
-`;
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -31,10 +22,6 @@ const GlobalStyle = createGlobalStyle`
 
 const Index = () => {
   const { seo } = useContent();
-  const [isMounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, [setMounted]);
 
   return (
     <>
@@ -70,7 +57,7 @@ const Index = () => {
       />
       <GlobalStyle />
       <Header />
-      {isMounted ? <Map /> : <MapPlaceholder />}
+      <Map />
       <Actions />
       <Footer />
     </>

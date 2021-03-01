@@ -11,6 +11,13 @@ import { documentToPlainTextString } from "@contentful/rich-text-plain-text-rend
 import { Share } from "./Share";
 import { TitleContainer } from "../../components/TitleContainer";
 import { TABLET } from "../../constant/Breakpoints";
+import mapPlaceholder from "../../assets/images/map-placeholder.png";
+
+const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
 
 const Section = styled.section`
   margin-bottom: 124px;
@@ -96,9 +103,11 @@ export const Map = () => {
   }, []);
 
   const [smallScreen, setSmallScreen] = useState(isSmallScreen());
+  const [isMounted, setMounted] = useState(false);
 
   useEffect(() => {
     setSmallScreen(isSmallScreen());
+    setMounted(true);
   }, [setSmallScreen]);
 
   return (
@@ -111,7 +120,7 @@ export const Map = () => {
             <EventForm onSubmitPostalCode={handlePostalCode} />
           </FormContainer>
         )}
-        <MapComponent ref={mapRef} />
+        {isMounted ? <MapComponent /> : <MapPlaceholder />}
         <CTAContainer>
           <Button
             {...({
