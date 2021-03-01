@@ -70,7 +70,7 @@ export const EventForm = ({ onSubmitPostalCode }: Props) => {
 
   return (
     <Container>
-      <Card className="px-4 sm:px-12 py-12">
+      <Card className="px-8 sm:px-12 py-12">
         <Form
           id="sib-form"
           onSubmit={handleSubmit}

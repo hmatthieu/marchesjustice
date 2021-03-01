@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Flama";
+    src: url("/fonts/flama/Flama-Medium.otf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Flama";
+    src: url("/fonts/flama/Flama-Bold.otf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Flama";
+    src: url("/fonts/flama/Flama-LightItalic.otf");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Flama";
+    src: url("/fonts/flama/Flama-Light.otf");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Kawaru";
+    src: url("/fonts/kawaru/Kawaru.ttf");
+}

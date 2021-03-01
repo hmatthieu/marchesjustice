@@ -4,8 +4,8 @@ import { TitleContainer } from "../components/TitleContainer";
 import { TextKey } from "../technical/contentful/text";
 import styled from "styled-components";
 import { PRIMARY } from "../constant/Colors";
-import { Fonts } from "../assets/fonts";
 import { Ratio } from "../components/Ratio";
+import { KAWARU } from "../constant/Fonts";
 
 const data = [
   {
@@ -71,8 +71,9 @@ const ItemTag = styled.mark`
 `;
 
 const ItemTitle = styled.h4`
-  font-family: ${Fonts.KAWARU};
+  font-family: ${KAWARU};
   font-size: 18px;
+  text-transform: uppercase;
 `;
 
 const ItemText = styled.p`

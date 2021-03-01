@@ -9,7 +9,7 @@ import { TextKey } from "../technical/contentful/text";
 
 const Container = styled.header`
   max-width: 1024px;
-  padding: 0 24px;
+  padding: 0 48px;
   margin: 0 auto;
 `;
 

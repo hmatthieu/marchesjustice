@@ -1,25 +1,30 @@
 import "../custom-types/assets.d";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { BLACK } from "../constant/Colors";
 import Helmet from "react-helmet";
 import favicon from "../assets/images/favicon.png";
 import { ContentProvider } from "../technical/contentful/ContentProvider";
 import { useContent } from "../technical/contentful/content";
 import { Header } from "../section/Header";
-import { FlamaFontFace } from "../assets/fonts/flama";
-import { Fonts } from "../assets/fonts";
+import { FLAMA } from "../constant/Fonts";
 import { Map } from "../section/map";
-import { KawaruFontFace } from "../assets/fonts/kawaru";
 import { Actions } from "../section/Actions";
 import { Footer } from "../section/Footer";
+import mapPlaceholder from "../assets/images/map-placeholder.png";
+
+const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+`;
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     color: ${BLACK};
-    font-family: ${Fonts.FLAMA};
+    font-family: ${FLAMA};
   }
 `;
 
@@ -63,10 +68,8 @@ const Index = () => {
         ]}
       />
       <GlobalStyle />
-      <FlamaFontFace />
-      <KawaruFontFace />
       <Header />
-      {isMounted && <Map />}
+      {isMounted ? <Map /> : <MapPlaceholder />}
       <Actions />
       <Footer />
     </>

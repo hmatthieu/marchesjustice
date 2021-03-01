@@ -8,7 +8,7 @@ import {
   TileLayer,
 } from "react-leaflet";
 import "./style.css";
-import { Fonts } from "../../../assets/fonts";
+import { FLAMA } from "../../../constant/Fonts";
 import { Icon } from "leaflet";
 
 const MapContainer = styled.div`
@@ -39,7 +39,7 @@ const Popup = styled(PopupLeaflet)`
 `;
 
 const Link = styled.a`
-  font-family: ${Fonts.FLAMA};
+  font-family: ${FLAMA};
   font-weight: 500;
   font-size: 22px;
   color: black !important;

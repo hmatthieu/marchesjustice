@@ -61,7 +61,7 @@ function isSmallScreen() {
 
 async function fetchPosition(postalCode: string) {
   const response = await fetch(
-    `http://api.positionstack.com/v1/forward?access_key=${process.env.POSITION_STACK_API_KEY}&query=${postalCode}&limit=1`
+    `https://api.positionstack.com/v1/forward?access_key=${process.env.POSITION_STACK_API_KEY}&query=${postalCode}&limit=1`
   );
   if (response.status === 200) {
     const {

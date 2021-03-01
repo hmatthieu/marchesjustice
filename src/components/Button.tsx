@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 import { rotate } from "./rotate";
 import { Loading as LoadingIcon } from "../assets/images/Loading";
-import { Fonts } from "../assets/fonts";
+import { KAWARU } from "../constant/Fonts";
 import { PRIMARY } from "../constant/Colors";
 
 const Loading = styled(LoadingIcon)`
@@ -27,7 +27,8 @@ const BaseButton = styled.button<ButtonBaseProps>`
   box-shadow: none;
   text-decoration: none;
   color: white;
-  font-family: ${Fonts.KAWARU};
+  font-family: ${KAWARU};
+  text-transform: uppercase;
   font-size: 18px;
   height: 60px;
   text-align: center;
