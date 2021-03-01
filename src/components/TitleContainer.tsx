@@ -12,6 +12,7 @@ const Container = styled.div`
   font-size: 28px;
   text-align: center;
   margin-bottom: 48px;
+  padding: 0 24px;
 `;
 
 interface Props {
