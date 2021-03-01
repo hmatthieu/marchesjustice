@@ -1,6 +1,8 @@
 import { createContext, useContext } from "react";
 import { SEO } from "./SEO";
 import { Document } from "@contentful/rich-text-types";
+import { Image } from "./image";
+import { Entry } from "./entry";
 
 interface ContentfulData {
   seo: Partial<SEO>;
@@ -10,6 +12,7 @@ interface ContentfulData {
       href?: string;
     };
   };
+  logo?: Entry<Image>;
 }
 
 export interface ContextData extends ContentfulData {

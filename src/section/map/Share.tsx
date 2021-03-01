@@ -4,7 +4,6 @@ import { useContent } from "../../technical/contentful/content";
 import { TextKey } from "../../technical/contentful/text";
 import { Button } from "../../components/Button";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import { FLAMA } from "../../constant/Fonts";
 
 const Container = styled.div`
   margin: 0px 62px;
@@ -14,12 +13,8 @@ const Container = styled.div`
   flex-wrap: wrap;
 
   > a {
-    margin: 42px 21px 0 21px;
+    margin: 42px 12px 0 12px;
     white-space: nowrap;
-    font-family: ${FLAMA};
-    font-style: normal;
-    font-weight: 700;
-    text-transform: none;
   }
 `;
 
@@ -42,8 +37,9 @@ export const Share = () => {
             target: "_blank",
             as: "a",
             shadow: true,
+            small: true,
           } as any)}
-          className="md:w-72 w-full"
+          className="sm:w-64 w-full"
         >
           {documentToPlainTextString(share.document)}
         </Button>

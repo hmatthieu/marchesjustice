@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    margin: 0;
+    color: black;
+    font-family: "Flama";
+}
+
 @font-face {
     font-family: "Flama";
     src: url("/fonts/flama/Flama-Medium.otf");

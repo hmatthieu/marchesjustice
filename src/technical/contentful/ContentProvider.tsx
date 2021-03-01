@@ -26,6 +26,25 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
           href
         }
       }
+      allContentfulLogo(limit: 1) {
+        nodes {
+          img {
+            fixed(width: 250, height: 200, resizingBehavior: PAD) {
+              srcWebp
+              src
+              tracedSVG
+              height
+              width
+            }
+            file {
+              contentType
+              url
+            }
+            title
+            contentful_id
+          }
+        }
+      }
     }
   `);
 
@@ -44,6 +63,16 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
       }),
       {}
     ),
+    logo: {
+      fields: {
+        fixed: data.allContentfulLogo.nodes[0].img.fixed,
+        title: data.allContentfulLogo.nodes[0].img.title,
+        file: data.allContentfulLogo.nodes[0].img.file,
+      },
+      sys: {
+        id: data.allContentfulLogo.nodes[0].img.contentful_id,
+      },
+    },
   };
 
   return (

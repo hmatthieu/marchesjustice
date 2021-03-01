@@ -1,10 +1,10 @@
 import * as React from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { EventForm } from "./Form";
 import { useContent } from "../../technical/contentful/content";
 import { TextKey } from "../../technical/contentful/text";
 import styled from "styled-components";
-import { MapComponent } from "./map-component";
+import { MapComponent, MarkerData } from "./map-component";
 import { Map as LeafletMap } from "react-leaflet";
 import { Button } from "../../components/Button";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
@@ -44,8 +44,11 @@ const FormContainer = styled.div`
 const CTAContainer = styled.div`
   position: absolute;
   z-index: 9999;
-  left: 46px;
   bottom: 50px;
+  left: 0;
+  right: 0;
+  padding: 0 46px;
+  display: flex;
 `;
 
 interface PositionStackData {
@@ -71,6 +74,18 @@ async function fetchPosition(postalCode: string) {
   }
 }
 
+async function fetchAllMarkers(): Promise<MarkerData[]> {
+  const response = await fetch(
+    "https://hub.lemouvement.ong/a/loiclimat_28mars"
+  );
+  const data = await response.json();
+  return data.map(({ Ville, URL, Latitude, Longitude }) => ({
+    text: Ville,
+    href: URL,
+    position: [Latitude, Longitude],
+  }));
+}
+
 export const Map = () => {
   const { texts } = useContent();
   const mapRef = useRef<LeafletMap>(null);
@@ -86,7 +101,7 @@ export const Map = () => {
           lat: position.latitude,
           lng: position.longitude,
         },
-        12
+        10
       );
     } catch (e) {
       console.warn(e);
@@ -94,14 +109,29 @@ export const Map = () => {
   }, []);
 
   const [isMounted, setMounted] = useState(false);
-
   useEffect(() => {
     setMounted(true);
   }, [setMounted]);
 
+  const [markers, setMarkers] = useState<MarkerData[]>([]);
+
+  useEffect(() => {
+    fetchAllMarkers().then(setMarkers);
+  }, [setMarkers]);
+
+  const countReplace = useMemo(
+    () => ({
+      "{{count}}": markers.length > 0 ? markers.length.toString() : "..",
+    }),
+    [markers]
+  );
+
   return (
     <Section>
-      <TitleContainer document={texts[TextKey.MAP_HEADER].document} />
+      <TitleContainer
+        document={texts[TextKey.MAP_HEADER].document}
+        replaces={countReplace}
+      />
       <EventForm
         className="block md:hidden"
         onSubmitPostalCode={handlePostalCode}
@@ -110,7 +140,7 @@ export const Map = () => {
         <FormContainer className="hidden md:block">
           <EventForm onSubmitPostalCode={handlePostalCode} />
         </FormContainer>
-        {isMounted ? <MapComponent /> : <MapPlaceholder />}
+        {isMounted ? <MapComponent markers={markers} /> : <MapPlaceholder />}
         <CTAContainer>
           <Button
             {...({
@@ -119,6 +149,7 @@ export const Map = () => {
               as: "a",
               shadow: true,
             } as any)}
+            className="sm:w-auto w-full"
           >
             {documentToPlainTextString(texts[TextKey.MAP_CTA].document)}
           </Button>

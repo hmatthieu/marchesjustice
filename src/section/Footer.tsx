@@ -4,15 +4,18 @@ import styled from "styled-components";
 import { Link as BaseLink } from "gatsby";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { TextKey } from "../technical/contentful/text";
+import { FLAMA } from "../constant/Fonts";
 
 const Link = styled(BaseLink)`
-  font-family: Roboto;
+  font-family: ${FLAMA};
   font-size: 16px;
   text-decoration: underline;
 `;
 
 const HTMLFooter = styled.footer`
-  margin: 90px 125px;
+  max-width: 1024px;
+  padding: 0 24px;
+  margin: 90px auto;
 `;
 
 export const Footer = () => {

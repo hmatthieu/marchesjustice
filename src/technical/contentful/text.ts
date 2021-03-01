@@ -5,6 +5,7 @@ export enum TextKey {
   MAP_FORM_POSTAL = "map-form-postal",
   MAP_FORM_OTIN = "map-form-optin",
   MAP_FORM_CTA = "map-form-cta",
+  MAP_FORM_SUCCESS = "map-form-success",
   MAP_SHARE_VOLUNTEER = "map-share-volunteer",
   MAP_SHARE_FACEBOOK = "map-share-facebook",
   MAP_SHARE_TWITTER = "map-share-twitter",
@@ -13,4 +14,6 @@ export enum TextKey {
   ACTIONS_HEADER = "actions-header",
   LEGALS = "legals",
   LEGALS_CTA = "legals-cta",
+  BACK_TO_HOMEPAGE = "back-to-homepage",
+  NOT_FOUND = "404-not-found",
 }

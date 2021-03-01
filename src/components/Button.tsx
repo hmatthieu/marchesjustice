@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 import { rotate } from "./rotate";
 import { Loading as LoadingIcon } from "../assets/images/Loading";
-import { KAWARU } from "../constant/Fonts";
+import { FLAMA, KAWARU } from "../constant/Fonts";
 import { PRIMARY } from "../constant/Colors";
 
 const Loading = styled(LoadingIcon)`
@@ -15,6 +15,7 @@ const Loading = styled(LoadingIcon)`
 
 interface ButtonBaseProps {
   shadow?: boolean;
+  small?: boolean;
 }
 
 const BaseButton = styled.button<ButtonBaseProps>`
@@ -27,15 +28,28 @@ const BaseButton = styled.button<ButtonBaseProps>`
   box-shadow: none;
   text-decoration: none;
   color: white;
-  font-family: ${KAWARU};
-  text-transform: uppercase;
   font-size: 18px;
   height: 60px;
   text-align: center;
   border-radius: 3px;
   padding: 0 24px;
+
+  ${({ small }: ButtonBaseProps) =>
+    small
+      ? `
+      
+    font-family: ${FLAMA};
+    font-style: normal;
+    font-weight: 700;
+    text-transform: none;
+    `
+      : `
+      font-family: ${KAWARU};
+      text-transform: uppercase;
+    `}
+
   ${({ shadow }: ButtonBaseProps) =>
-      shadow && `box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);`}
+    shadow && `box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);`}
     :focus {
     border: none;
     outline: none;

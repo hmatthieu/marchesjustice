@@ -40,6 +40,23 @@ const Button = styled(BaseButton)`
   margin-top: 24px;
 `;
 
+const SuccessMessage = styled.p<{ visible: boolean }>`
+  position: absolute;
+  bottom: 12px;
+  transition: all 0.3s ease;
+
+  ${({ visible }) =>
+    visible
+      ? `
+  opacity: 1;
+  transform: translateY(0);
+ `
+      : `
+  opacity: 0;
+  transform: translateY(-100%);
+ `}
+`;
+
 interface Values {
   EMAIL: string;
   OPT_IN: boolean;
@@ -78,16 +95,16 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
           validate={validate({
             EMAIL: {
               email: {
-                message: "n'est pas valide.",
+                message: "^L'email n'est pas valide.",
               },
               presence: {
-                message: "est requis.",
+                message: "^L'email est requis.",
               },
             },
             postal: {
               format: {
                 pattern: /^(?:(?:(?:0[1-9]|[1-8]\d|9[0-4])(?:\d{3})?)|97[1-8]|98[4-9]|‌​‌​2[abAB])$/,
-                message: "ne semble pas être un code postal valide.",
+                message: "^Le code postal ne semble pas être valide.",
               },
               length: {
                 minimum: 3,
@@ -165,11 +182,17 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
               <Button
                 disabled={!canSubmit(formProps)}
                 loading={formProps.submitting}
+                style={{ zIndex: 1 }}
               >
                 {documentToPlainTextString(
                   texts[TextKey.MAP_FORM_CTA].document
                 )}
               </Button>
+              <SuccessMessage visible={formProps.submitSucceeded}>
+                {documentToPlainTextString(
+                  texts[TextKey.MAP_FORM_SUCCESS].document
+                )}
+              </SuccessMessage>
             </HTMLForm>
           )}
         </Form>

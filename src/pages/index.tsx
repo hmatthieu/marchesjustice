@@ -58,7 +58,8 @@ const Index = () => {
       <GlobalStyle />
       <Header />
       <Map />
-      <Actions />
+      {false && <Actions /> // Let's hide actions for now...
+      }
       <Footer />
     </>
   );

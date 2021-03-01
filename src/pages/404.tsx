@@ -16,7 +16,7 @@ const Container = styled.article`
   padding: 48px 24px;
 `;
 
-const LegalsContent = styled.div`
+const NoContent = styled.div`
   h1 {
     color: ${PRIMARY};
     font-family: ${KAWARU};
@@ -39,14 +39,14 @@ const LegalsContent = styled.div`
   }
 `;
 
-export const Legals = () => {
+export const NotFound = () => {
   const { texts } = useContent();
 
   return (
     <Container>
-      <LegalsContent
+      <NoContent
         dangerouslySetInnerHTML={{
-          __html: documentToHtmlString(texts[TextKey.LEGALS].document),
+          __html: documentToHtmlString(texts[TextKey.NOT_FOUND].document),
         }}
       />
       <Link to="/">
@@ -60,6 +60,6 @@ export const Legals = () => {
 
 export default () => (
   <ContentProvider>
-    <Legals />
+    <NotFound />
   </ContentProvider>
 );

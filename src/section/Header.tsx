@@ -6,6 +6,7 @@ import { PRIMARY } from "../constant/Colors";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { useContent } from "../technical/contentful/content";
 import { TextKey } from "../technical/contentful/text";
+import { ContentfulImage } from "../components/ContentfulImage";
 
 const Container = styled.header`
   max-width: 1024px;
@@ -41,7 +42,7 @@ const TextContainer = styled.div`
 
 export const Header = () => {
   const textContainerRef = useRef<HTMLDivElement>(null);
-  const { texts } = useContent();
+  const { texts, logo } = useContent();
 
   useEffect(() => {
     if (textContainerRef.current) {
@@ -53,7 +54,7 @@ export const Header = () => {
 
   return (
     <Container>
-      <Logo className="mx-auto mt-12 w-64" />
+      <ContentfulImage image={logo} className="mx-auto mt-12" />
       <TextContainer
         ref={textContainerRef}
         dangerouslySetInnerHTML={{
