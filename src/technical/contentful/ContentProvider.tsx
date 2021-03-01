@@ -32,7 +32,6 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
             fixed(width: 250, height: 200, resizingBehavior: PAD) {
               srcWebp
               src
-              tracedSVG
               height
               width
             }
