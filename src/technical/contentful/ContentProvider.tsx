@@ -29,7 +29,7 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
       allContentfulLogo(limit: 1) {
         nodes {
           img {
-            fixed(width: 250, height: 200, resizingBehavior: PAD) {
+            fixed(width: 500, height: 400, resizingBehavior: PAD) {
               srcWebp
               src
               height

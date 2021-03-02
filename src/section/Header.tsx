@@ -54,7 +54,7 @@ export const Header = () => {
 
   return (
     <Container>
-      <ContentfulImage image={logo} className="mx-auto mt-12" />
+      <ContentfulImage image={logo} className="mx-auto mt-12 w-64 h-auto" />
       <TextContainer
         ref={textContainerRef}
         dangerouslySetInnerHTML={{
