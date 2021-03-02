@@ -140,8 +140,7 @@ export const Map = () => {
         document={texts[TextKey.MAP_HEADER].document}
         replaces={countReplace}
       />
-      {
-        /*
+      {/*
           <Container className="mt-0 md:mt-80">
             <FormContainer className="hidden md:block">
               <EventForm onSubmitPostalCode={handlePostalCode} />
@@ -166,8 +165,7 @@ export const Map = () => {
               </Button>
             </CTAContainer>
           </Container>
-         */
-      }
+         */}
       <EventForm
         className="(block md:hidden)" //todo add again when map is ready
         onSubmitPostalCode={handlePostalCode}

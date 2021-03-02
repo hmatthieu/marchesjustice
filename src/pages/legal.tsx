@@ -30,12 +30,21 @@ const LegalsContent = styled.div`
   }
 
   h3 {
+    font-size: 18px;
+  }
+
+  h4 {
     color: ${PRIMARY};
     margin-bottom: 24px;
   }
 
   p {
     margin-bottom: 24px;
+  }
+
+  ul {
+    padding-inline-start: 40px;
+    list-style: disc;
   }
 `;
 
