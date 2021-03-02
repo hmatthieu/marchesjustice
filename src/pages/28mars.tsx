@@ -40,7 +40,7 @@ const Mars28 = () => {
             name: "viewport",
             content: "width=device-width, initial-scale=0.7",
           },
-          { property: "og:url", content: "https://vraieloiclimat.fr/28mars" },
+          { property: "og:url", content: "https://vraieloiclimat.fr/28mars/" },
           { property: "og:type", content: "website" },
           { property: "og:title", content: seo.title },
           {
