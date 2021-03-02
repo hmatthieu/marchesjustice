@@ -40,7 +40,7 @@ const Index = () => {
             name: "viewport",
             content: "width=device-width, initial-scale=0.7",
           },
-          { property: "og:url", content: "http://localhost:8000" },
+          { property: "og:url", content: "https://loi-climat.web.app" },
           { property: "og:type", content: "website" },
           { property: "og:title", content: seo.title },
           {
@@ -49,7 +49,7 @@ const Index = () => {
           },
           {
             property: "og:image",
-            content: seo.image,
+            content: `https://loi-climat.web.app${seo.image}`,
           },
           { property: "og:locale", content: "FR" },
           { property: "twitter:card", content: "summary_large_image" },
