@@ -11,6 +11,9 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  
+  // todo remove when map is ready
+  margin-top: 24px;
 
   > a {
     margin: 42px 12px 0 12px;
