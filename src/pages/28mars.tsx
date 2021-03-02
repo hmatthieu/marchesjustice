@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Index = () => {
+const Mars28 = () => {
   const { seo } = useContent();
 
   return (
@@ -40,7 +40,7 @@ const Index = () => {
             name: "viewport",
             content: "width=device-width, initial-scale=0.7",
           },
-          { property: "og:url", content: "https://loi-climat.web.app" },
+          { property: "og:url", content: "https://vraieloiclimat.fr/28mars" },
           { property: "og:type", content: "website" },
           { property: "og:title", content: seo.title },
           {
@@ -67,6 +67,6 @@ const Index = () => {
 
 export default () => (
   <ContentProvider>
-    <Index />
+    <Mars28 />
   </ContentProvider>
 );
