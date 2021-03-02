@@ -1,8 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { Logo as BaseLogo } from "../assets/images/Logo";
 import styled from "styled-components";
-import { PRIMARY } from "../constant/Colors";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { useContent } from "../technical/contentful/content";
 import { TextKey } from "../technical/contentful/text";
@@ -12,10 +10,6 @@ const Container = styled.header`
   max-width: 1024px;
   padding: 0 24px;
   margin: 0 auto;
-`;
-
-const Logo = styled(BaseLogo)`
-  color: ${PRIMARY};
 `;
 
 const TextContainer = styled.div`
@@ -54,7 +48,7 @@ export const Header = () => {
 
   return (
     <Container>
-      <ContentfulImage image={logo} className="mx-auto mt-12 w-64 h-auto" />
+      <ContentfulImage image={logo} className="mx-auto mt-12 w-auto h-52" />
       <TextContainer
         ref={textContainerRef}
         dangerouslySetInnerHTML={{
