@@ -49,7 +49,7 @@ const Index = () => {
           },
           {
             property: "og:image",
-            content: `https://loi-climat.web.app${seo.image}`,
+            content: `https:${seo.image}`,
           },
           { property: "og:locale", content: "FR" },
           { property: "twitter:card", content: "summary_large_image" },
