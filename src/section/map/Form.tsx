@@ -104,10 +104,6 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
               },
             },
             postal: {
-              format: {
-                pattern: /^(?:(?:(?:0[1-9]|[1-8]\d|9[0-4])(?:\d{3})?)|97[1-8]|98[4-9]|‌​‌​2[abAB])$/,
-                message: "^Le code postal ne semble pas être valide.",
-              },
               length: {
                 minimum: 3,
                 message: "^Le code postal doit faire plus de 3 caractères.",
