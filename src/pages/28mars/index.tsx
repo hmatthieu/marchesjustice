@@ -1,24 +1,13 @@
-import "../custom-types/assets.d";
+import "../../custom-types/assets.d";
 import * as React from "react";
-import { createGlobalStyle } from "styled-components";
-import { BLACK } from "../constant/Colors";
 import Helmet from "react-helmet";
-import favicon from "../assets/images/favicon.png";
-import { ContentProvider } from "../technical/contentful/ContentProvider";
-import { useContent } from "../technical/contentful/content";
-import { Header } from "../section/Header";
-import { FLAMA } from "../constant/Fonts";
-import { Map } from "../section/map";
-import { Actions } from "../section/Actions";
-import { Footer } from "../section/Footer";
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    color: ${BLACK};
-    font-family: ${FLAMA};
-  }
-`;
+import favicon from "../../assets/images/favicon.png";
+import { ContentProvider } from "../../technical/contentful/ContentProvider";
+import { useContent } from "../../technical/contentful/content";
+import { Header } from "../../section/Header";
+import { Map } from "../../section/map";
+import { Actions } from "../../section/Actions";
+import { Footer } from "../../section/Footer";
 
 const Mars28 = () => {
   const { seo } = useContent();
@@ -55,7 +44,6 @@ const Mars28 = () => {
           { property: "twitter:card", content: "summary_large_image" },
         ]}
       />
-      <GlobalStyle />
       <Header />
       <Map />
       {false && <Actions /> // Let's hide actions for now...

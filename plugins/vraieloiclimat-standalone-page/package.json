@@ -1,0 +1,11 @@
+{
+  "name": "vraieloiclimat-standalone-page",
+  "version": "1.0.0",
+  "description": "Vraieloiclimat specific plugin to generate page from CMS",
+  "main": "gatsby-node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthieu Hocquart",
+  "license": "ISC"
+}
