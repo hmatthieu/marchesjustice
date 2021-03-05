@@ -10,7 +10,8 @@ declare global {
 
 export const ExternalProvider = ({ children }: PropsWithChildren<{}>) => {
   const [signers, setSigners] = useState(
-    window.__SIGNERS_CACHE__ || initialState.signers
+    (typeof window !== "undefined" && window.__SIGNERS_CACHE__) ||
+      initialState.signers
   );
 
   useEffect(() => {
