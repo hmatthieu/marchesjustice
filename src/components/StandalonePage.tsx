@@ -110,7 +110,9 @@ const PageContent = ({ page }: ContentProps) => {
         ]}
       />
       <Container>
-        <ContentfulImage image={logo} className="mb-12 w-auto h-52" />
+        <Link to="/">
+          <ContentfulImage image={logo} className="mb-12 w-auto h-52" />
+        </Link>
         <Content
           dangerouslySetInnerHTML={{
             __html: htmlContent,
@@ -120,7 +122,7 @@ const PageContent = ({ page }: ContentProps) => {
           <Button
             shadow={true}
             small={true}
-            className="sm:w-auto w-full"
+            className="sm:w-auto w-full inline-flex"
             {...({
               as: "a",
               href: page.fields.bottomActionLink,
@@ -130,8 +132,8 @@ const PageContent = ({ page }: ContentProps) => {
             {page.fields.bottomActionText}
           </Button>
         ) : (
-          <Link to="/">
-            <Button shadow={true} small={true} className="sm:w-auto w-full">
+          <Link to="/" className="sm:w-auto w-full">
+            <Button shadow={true} small={true}>
               {documentToPlainTextString(
                 texts[TextKey.BACK_TO_HOMEPAGE].document
               )}

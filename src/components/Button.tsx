@@ -33,6 +33,7 @@ const BaseButton = styled.button<ButtonBaseProps>`
   text-align: center;
   border-radius: 3px;
   padding: 0 24px;
+  min-width: 16rem;
 
   ${({ small }: ButtonBaseProps) =>
     small
