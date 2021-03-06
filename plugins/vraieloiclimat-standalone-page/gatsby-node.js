@@ -32,7 +32,7 @@ exports.createPages = ({ graphql, actions }) => {
     const pages = result.data.allContentfulPage.nodes.map(node => ({
       fields: {
         ...node,
-        image: node.image?.fixed.src,
+        image: node.image ? node.image.fixed.src : undefined,
         content: JSON.parse(node.content.raw),
       },
       sys: {
