@@ -111,7 +111,7 @@ const PageContent = ({ page }: ContentProps) => {
       />
       <Container>
         <Link to="/">
-          <ContentfulImage image={logo} className="mb-12 w-auto h-52" />
+          <ContentfulImage image={logo} className="mx-auto mb-12 w-auto h-52" />
         </Link>
         <Content
           dangerouslySetInnerHTML={{

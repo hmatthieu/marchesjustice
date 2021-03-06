@@ -7,7 +7,7 @@ import { TextKey } from "../technical/contentful/text";
 import { ContentfulImage } from "../components/ContentfulImage";
 
 const Container = styled.header`
-  max-width: 1024px;
+  max-width: 800px;
   padding: 0 24px;
   margin: 0 auto;
 `;
