@@ -26,6 +26,8 @@ const Container = styled.article`
 `;
 
 const Content = styled.div`
+  white-space: pre-wrap;
+
   h1 {
     color: ${PRIMARY};
     font-family: ${KAWARU};
