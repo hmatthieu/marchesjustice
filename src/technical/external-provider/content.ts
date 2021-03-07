@@ -5,7 +5,7 @@ export interface ExternalData {
 }
 
 export const initialState: ExternalData = {
-  signers: ["Ariane", "Matthieu", "Tancrède"],
+  signers: [],
 };
 
 export const ExternalContext = createContext<ExternalData>(initialState);
