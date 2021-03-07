@@ -112,7 +112,7 @@ const PageContent = ({ page }: ContentProps) => {
         ]}
       />
       <Container>
-        <Link to="/">
+        <Link to="/28mars">
           <ContentfulImage image={logo} className="mx-auto mb-12 w-auto h-52" />
         </Link>
         <Content
