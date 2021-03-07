@@ -132,7 +132,7 @@ const PageContent = ({ page }: ContentProps) => {
             {page.fields.bottomActionText}
           </Button>
         ) : (
-          <Link to="/" className="sm:w-auto w-full">
+          <Link to="/28mars" className="sm:w-auto w-full">
             <Button shadow={true} small={true}>
               {documentToPlainTextString(
                 texts[TextKey.BACK_TO_HOMEPAGE].document
