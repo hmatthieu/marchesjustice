@@ -6,7 +6,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return graphql(`
     query {
-      allContentfulPage {
+      allContentfulPage(filter: { enabled: { eq: true } }) {
         nodes {
           content {
             raw
