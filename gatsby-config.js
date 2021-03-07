@@ -34,6 +34,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     "gatsby-plugin-typescript",
     "gatsby-plugin-react-leaflet",
+    "vraieloiclimat-standalone-page",
     "gatsby-plugin-postcss",
     "gatsby-plugin-styled-components",
     // this (optional) plugin enables Progressive Web App + Offline functionality
