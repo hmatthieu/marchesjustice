@@ -15,7 +15,9 @@ export const ExternalProvider = ({ children }: PropsWithChildren<{}>) => {
   );
 
   useEffect(() => {
-    // todo fetch signers
+    import("../airtable/signers")
+      .then(({ fetchSigners }) => fetchSigners())
+      .then(setSigners);
   }, [setSigners]);
 
   return (

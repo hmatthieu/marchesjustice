@@ -1,7 +1,8 @@
 import { createContext, useContext } from "react";
+import { Signer } from "../airtable/signers";
 
 export interface ExternalData {
-  signers: string[];
+  signers: Signer[];
 }
 
 export const initialState: ExternalData = {

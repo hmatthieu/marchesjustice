@@ -69,10 +69,12 @@ const PageContent = ({ page }: ContentProps) => {
   const document = page.fields.content;
   const htmlContent = useMemo(
     () =>
-      documentToHtmlString(document).replace(
-        "{{signers}}",
-        generateSignersHTML(signers)
-      ),
+      documentToHtmlString(document)
+        .replace(
+          "{{signers_count}}",
+          signers.length === 0 ? ".." : signers.length.toString()
+        )
+        .replace("{{signers}}", generateSignersHTML(signers)),
     [signers, document]
   );
 
