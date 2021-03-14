@@ -9,11 +9,9 @@ import { Map } from "../../section/map";
 import { Actions } from "../../section/Actions";
 import { Footer } from "../../section/Footer";
 import { ExternalProvider } from "../../technical/external-provider/ContentProvider";
-import { useCMSLink } from "../../technical/useCMSLink";
 
 const Mars28 = () => {
   const { seo } = useContent();
-  useCMSLink();
 
   return (
     <>
