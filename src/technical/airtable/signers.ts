@@ -1,4 +1,4 @@
-import { publicTable } from "./";
+import { base } from "./";
 
 export interface Signer {
   id: string;
@@ -7,7 +7,7 @@ export interface Signer {
 }
 
 function fetchSignersView() {
-  return publicTable.select({ view: "viwbPO6Nhn5x8SCuO" });
+  return base("tbl63aU5tgD0076N5").select({ view: "viwbPO6Nhn5x8SCuO" });
 }
 
 export function fetchSigners() {

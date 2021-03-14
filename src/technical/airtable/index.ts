@@ -39,4 +39,3 @@ Airtable.configure({
 });
 
 export const base = Airtable.base("appdSTNSo3Q4bK5Ec");
-export const publicTable = base("tbl63aU5tgD0076N5");

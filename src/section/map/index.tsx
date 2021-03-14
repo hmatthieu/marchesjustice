@@ -11,6 +11,7 @@ import { documentToPlainTextString } from "@contentful/rich-text-plain-text-rend
 import { Share } from "./Share";
 import { TitleContainer } from "../../components/TitleContainer";
 import mapPlaceholder from "../../assets/images/map-placeholder.png";
+import { useExternal } from "../../technical/external-provider/content";
 
 const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
   width: 100%;
@@ -96,6 +97,16 @@ async function fetchAllMarkers(): Promise<MarkerData[]> {
 
 export const Map = () => {
   const { texts } = useContent();
+  const { events } = useExternal();
+  const markers = useMemo<MarkerData[]>(
+    () =>
+      events.map(event => ({
+        text: event.city,
+        href: event.URL,
+        position: event.position,
+      })),
+    [events]
+  );
   const mapRef = useRef<LeafletMap>(null);
   const handlePostalCode = useCallback(async (postalCode: string) => {
     const currentMap = mapRef.current;
@@ -120,12 +131,6 @@ export const Map = () => {
   useEffect(() => {
     setMounted(true);
   }, [setMounted]);
-
-  const [markers, setMarkers] = useState<MarkerData[]>([]);
-
-  useEffect(() => {
-    fetchAllMarkers().then(setMarkers);
-  }, [setMarkers]);
 
   const countReplace = useMemo(
     () => ({

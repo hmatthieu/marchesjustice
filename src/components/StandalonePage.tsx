@@ -18,6 +18,7 @@ import { ExternalProvider } from "../technical/external-provider/ContentProvider
 import { useExternal } from "../technical/external-provider/content";
 import { generateSignersHTML } from "../technical/generateSignersHTML";
 import { ContentfulImage } from "./ContentfulImage";
+import { useCMSLink } from "../technical/useCMSLink";
 
 const Container = styled.article`
   max-width: 1280px;
@@ -77,6 +78,7 @@ const PageContent = ({ page }: ContentProps) => {
         .replace("{{signers}}", generateSignersHTML(signers)),
     [signers, document]
   );
+  useCMSLink();
 
   return (
     <>
