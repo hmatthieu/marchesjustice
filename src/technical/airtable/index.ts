@@ -37,4 +37,3 @@ Airtable.configure({
   endpointUrl: "https://api.airtable.com",
   apiKey: AIRTABLE_API_KEY,
 });
-

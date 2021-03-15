@@ -39,6 +39,7 @@
     "react-final-form": "^6.5.2",
     "react-helmet": "^5.2.1",
     "react-leaflet": "^2.8.0",
+    "react-leaflet-markercluster": "^2.0.0",
     "styled-components": "^4.4.1",
     "validate.js": "^0.13.1"
   },

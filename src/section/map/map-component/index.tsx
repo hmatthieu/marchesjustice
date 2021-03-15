@@ -10,6 +10,7 @@ import {
 import "./style.css";
 import { FLAMA } from "../../../constant/Fonts";
 import { Icon } from "leaflet";
+import MarkerClusterGroup from "react-leaflet-markercluster";
 
 const MapContainer = styled.div`
   height: 100%;
@@ -47,6 +48,19 @@ const Link = styled.a`
   white-space: nowrap;
 `;
 
+interface Cluster {
+  getChildCount: () => number;
+}
+
+const createClusterCustomIcon = (cluster: Cluster) =>
+  new Icon({
+    iconUrl: require("../../../assets/images/marker_multiple3.svg"),
+    iconRetinaUrl: require("../../../assets/images/marker_multiple3.svg"),
+    iconSize: [40, 50],
+    iconAnchor: [20, 50],
+    popupAnchor: [0, -50],
+  });
+
 export interface MarkerData {
   text: string;
   href: string;
@@ -79,19 +93,25 @@ export const MapComponent = forwardRef<LeafletMap, Props>(
           scrollWheelZoom={false}
         >
           <TileLayer url="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png" />
-          {markers.map((marker, index) => (
-            <Marker
-              key={`${marker.text}_${index}`}
-              position={marker.position}
-              icon={markerIcon}
-            >
-              <Popup>
-                <Link href={marker.href} rel="noopener" target="_blank">
-                  {marker.text}
-                </Link>
-              </Popup>
-            </Marker>
-          ))}
+          <MarkerClusterGroup
+            maxClusterRadius={50}
+            iconCreateFunction={createClusterCustomIcon}
+            showCoverageOnHover={false}
+          >
+            {markers.map((marker, index) => (
+              <Marker
+                key={`${marker.text}_${index}`}
+                position={marker.position}
+                icon={markerIcon}
+              >
+                <Popup>
+                  <Link href={marker.href} rel="noopener" target="_blank">
+                    {marker.text}
+                  </Link>
+                </Popup>
+              </Marker>
+            ))}
+          </MarkerClusterGroup>
         </LeafletMap>
       </MapContainer>
     );

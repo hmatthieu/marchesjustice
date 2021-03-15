@@ -7,7 +7,9 @@ export interface Signer {
 }
 
 function fetchSignersView() {
-  return Airtable.base("appdSTNSo3Q4bK5Ec")("tbl63aU5tgD0076N5").select({ view: "viwbPO6Nhn5x8SCuO" });
+  return Airtable.base("appdSTNSo3Q4bK5Ec")("tbl63aU5tgD0076N5").select({
+    view: "viwbPO6Nhn5x8SCuO",
+  });
 }
 
 export function fetchSigners() {
