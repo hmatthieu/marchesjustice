@@ -22,11 +22,15 @@ export const ExternalProvider = ({ children }: PropsWithChildren<{}>) => {
   useEffect(() => {
     const fetchSigners = async () => {
       const Signers = await import("../airtable/signers");
-      setSigners(await Signers.fetchSigners());
+      const sSigners = await Signers.fetchSigners();
+      setSigners(sSigners);
+      window.__SIGNERS_CACHE__ = sSigners;
     };
     const fetchEvents = async () => {
       const Events = await import("../airtable/events");
-      setEvents(await Events.fetchEvents());
+      const sEvents = await Events.fetchEvents();
+      setEvents(sEvents);
+      window.__EVENTS_CACHE__ = sEvents;
     };
 
     Promise.all([fetchSigners(), fetchEvents()]);
