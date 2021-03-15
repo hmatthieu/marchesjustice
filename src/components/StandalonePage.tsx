@@ -18,6 +18,7 @@ import { ExternalProvider } from "../technical/external-provider/ContentProvider
 import { useExternal } from "../technical/external-provider/content";
 import { generateSignersHTML } from "../technical/generateSignersHTML";
 import { ContentfulImage } from "./ContentfulImage";
+import { handleCMSClick } from "../technical/handleCMSClick";
 
 const Container = styled.article`
   max-width: 1280px;
@@ -121,6 +122,7 @@ const PageContent = ({ page }: ContentProps) => {
           dangerouslySetInnerHTML={{
             __html: htmlContent,
           }}
+          onClick={handleCMSClick}
         />
         {page.fields.bottomActionText && page.fields.bottomActionLink ? (
           <Button

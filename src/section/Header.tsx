@@ -5,6 +5,7 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { useContent } from "../technical/contentful/content";
 import { TextKey } from "../technical/contentful/text";
 import { ContentfulImage } from "../components/ContentfulImage";
+import { handleCMSClick } from "../technical/handleCMSClick";
 
 const Container = styled.header`
   max-width: 800px;
@@ -54,6 +55,7 @@ export const Header = () => {
         dangerouslySetInnerHTML={{
           __html: documentToHtmlString(texts[TextKey.HEADER].document),
         }}
+        onClick={handleCMSClick}
       />
     </Container>
   );
