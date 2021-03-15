@@ -20,16 +20,33 @@ export function fetchEvents() {
     fetchEventsView().eachPage(
       (records, fetchNextPage) => {
         events.push(
-          ...records.map(record => ({
-            id: record.id,
-            city: record.get("Ville"),
-            postalCode: record.get("Code postal"),
-            URL: record.get("URL"),
-            position: [
-              parseFloat(record.get("Latitude")),
-              parseFloat(record.get("Longitude")),
-            ] as [number, number],
-          }))
+          ...records
+            .map(record => {
+              const position = [
+                parseFloat(record.get("Latitude")),
+                parseFloat(record.get("Longitude")),
+              ] as [number, number];
+
+              if (position.some(p => isNaN(p))) {
+                console.warn(
+                  `${record.get(
+                    "Ville"
+                  )} as some invalid position: [${record.get(
+                    "Latitude"
+                  )}, ${record.get("Longitude")}]`
+                );
+                return null;
+              }
+
+              return {
+                id: record.id,
+                city: record.get("Ville"),
+                postalCode: record.get("Code postal"),
+                URL: record.get("URL"),
+                position,
+              };
+            })
+            .filter(r => !!r)
         );
         fetchNextPage();
       },
