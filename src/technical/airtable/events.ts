@@ -1,4 +1,4 @@
-import { base } from "./";
+import { Airtable } from "./";
 
 export interface EventMap {
   id: string;
@@ -9,7 +9,7 @@ export interface EventMap {
 }
 
 function fetchEventsView() {
-  return base("tblBTmyNUHsRgKOex").select({ view: "viwdI87HSJgNlpNsf" });
+  return Airtable.base("appnUXzuFeI34zAw7")("tbluctVgUhZUmtRl5").select({ view: "viwLS4P7gvh8FUxW3" });
 }
 
 export function fetchEvents() {
@@ -24,8 +24,8 @@ export function fetchEvents() {
             postalCode: record.get("Code postal"),
             URL: record.get("URL"),
             position: [
-              parseInt(record.get("Latitude"), 10),
-              parseInt(record.get("Longitude"), 10),
+              parseFloat(record.get("Latitude")),
+              parseFloat(record.get("Longitude")),
             ] as [number, number],
           }))
         );

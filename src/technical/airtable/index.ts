@@ -27,7 +27,7 @@ declare global {
   }
 }
 
-const Airtable = window.Airtable;
+export const Airtable = window.Airtable;
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 if (!AIRTABLE_API_KEY) {
   throw new Error("Missing env AIRTABLE_API_KEY");
@@ -38,4 +38,3 @@ Airtable.configure({
   apiKey: AIRTABLE_API_KEY,
 });
 
-export const base = Airtable.base("appdSTNSo3Q4bK5Ec");
