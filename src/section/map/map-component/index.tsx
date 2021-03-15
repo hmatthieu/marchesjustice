@@ -58,7 +58,6 @@ const createClusterCustomIcon = (cluster: Cluster) =>
     iconRetinaUrl: require("../../../assets/images/marker_multiple3.svg"),
     iconSize: [40, 50],
     iconAnchor: [20, 50],
-    popupAnchor: [0, -50],
   });
 
 export interface MarkerData {
@@ -79,7 +78,7 @@ export const MapComponent = forwardRef<LeafletMap, Props>(
         iconRetinaUrl: require("../../../assets/images/marker.svg"),
         iconSize: [40, 50],
         iconAnchor: [20, 50],
-        popupAnchor: [0, -50],
+        popupAnchor: [0, -40],
       })
     );
 
@@ -94,7 +93,7 @@ export const MapComponent = forwardRef<LeafletMap, Props>(
         >
           <TileLayer url="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png" />
           <MarkerClusterGroup
-            maxClusterRadius={50}
+            maxClusterRadius={30}
             iconCreateFunction={createClusterCustomIcon}
             showCoverageOnHover={false}
           >

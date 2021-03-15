@@ -19,6 +19,7 @@ interface ButtonBaseProps {
 }
 
 const BaseButton = styled.button<ButtonBaseProps>`
+  pointer-events: all;
   display: flex;
   align-items: center;
   justify-content: center;

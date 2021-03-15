@@ -43,6 +43,7 @@ const FormContainer = styled.div`
 `;
 
 const CTAContainer = styled.div`
+  pointer-events: none;
   position: absolute;
   z-index: 9999;
   bottom: 50px;
