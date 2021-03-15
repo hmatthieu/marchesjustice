@@ -9,6 +9,8 @@ export function handleCMSClick(e: SyntheticEvent<HTMLElement>) {
     : -1;
   if (hostPosition >= 0 && hostPosition < 10) {
     e.preventDefault();
-    return navigate(link.href);
+    return navigate(
+      link.href.slice(hostPosition + window.document.location.host.length)
+    );
   }
 }
