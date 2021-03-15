@@ -83,18 +83,6 @@ async function fetchPosition(postalCode: string) {
   }
 }
 
-async function fetchAllMarkers(): Promise<MarkerData[]> {
-  const response = await fetch(
-    "https://hub.lemouvement.ong/a/loiclimat_28mars"
-  );
-  const data = await response.json();
-  return data.map(({ Ville, URL, Latitude, Longitude }) => ({
-    text: Ville,
-    href: URL,
-    position: [Latitude, Longitude],
-  }));
-}
-
 export const Map = () => {
   const { texts } = useContent();
   const { events } = useExternal();
@@ -145,36 +133,34 @@ export const Map = () => {
         document={texts[TextKey.MAP_HEADER].document}
         replaces={countReplace}
       />
-      {/*
-          <Container className="mt-0 md:mt-80">
-            <FormContainer className="hidden md:block">
-              <EventForm onSubmitPostalCode={handlePostalCode} />
-            </FormContainer>
-            {isMounted ? (
-              <MapComponent ref={mapRef} markers={markers} />
-            ) : (
-              <MapPlaceholder />
-            )}
-            <CTAContainer>
-              <Button
-                {...({
-                  href: texts[TextKey.MAP_CTA].href,
-                  target: "_blank",
-                  as: "a",
-                  shadow: true,
-                  rel: "noopener",
-                } as any)}
-                className="sm:w-auto w-full"
-              >
-                {documentToPlainTextString(texts[TextKey.MAP_CTA].document)}
-              </Button>
-            </CTAContainer>
-          </Container>
-         */}
       <EventForm
-        className="(block md:hidden)" //todo add again when map is ready
+        className="block md:hidden"
         onSubmitPostalCode={handlePostalCode}
       />
+      <Container className="mt-0 md:mt-80">
+        <FormContainer className="hidden md:block">
+          <EventForm onSubmitPostalCode={handlePostalCode} />
+        </FormContainer>
+        {isMounted ? (
+          <MapComponent ref={mapRef} markers={markers} />
+        ) : (
+          <MapPlaceholder />
+        )}
+        <CTAContainer>
+          <Button
+            {...({
+              href: texts[TextKey.MAP_CTA].href,
+              target: "_blank",
+              as: "a",
+              shadow: true,
+              rel: "noopener",
+            } as any)}
+            className="sm:w-auto w-full"
+          >
+            {documentToPlainTextString(texts[TextKey.MAP_CTA].document)}
+          </Button>
+        </CTAContainer>
+      </Container>
       <Share />
     </Section>
   );

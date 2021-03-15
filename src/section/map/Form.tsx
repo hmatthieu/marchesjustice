@@ -44,6 +44,7 @@ const SuccessMessage = styled.p<{ visible: boolean }>`
   position: absolute;
   bottom: 12px;
   transition: all 0.3s ease;
+  white-space: break-spaces;
 
   ${({ visible }) =>
     visible
@@ -91,7 +92,7 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
 
   return (
     <Container className={className}>
-      <Card className="px-8 sm:px-12 py-12 relative">
+      <Card className="px-8 sm:px-12 pt-12 pb-16 sm:pb-12 relative">
         <Form
           onSubmit={handleSubmit}
           validate={validate({
