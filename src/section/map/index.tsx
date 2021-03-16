@@ -10,7 +10,7 @@ import { Button } from "../../components/Button";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { Share } from "./Share";
 import { TitleContainer } from "../../components/TitleContainer";
-import mapPlaceholder from "../../assets/images/map-placeholder.png";
+import mapPlaceholder from "../../assets/images/map-placeholder.jpg";
 import { useExternal } from "../../technical/external-provider/content";
 
 const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
