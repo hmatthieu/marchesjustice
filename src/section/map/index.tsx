@@ -1,23 +1,17 @@
 import * as React from "react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { EventForm } from "./Form";
 import { useContent } from "../../technical/contentful/content";
 import { TextKey } from "../../technical/contentful/text";
 import styled from "styled-components";
-import { MapComponent, MarkerData } from "./map-component";
 import { Map as LeafletMap } from "react-leaflet";
 import { Button } from "../../components/Button";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { Share } from "./Share";
 import { TitleContainer } from "../../components/TitleContainer";
-import mapPlaceholder from "../../assets/images/map-placeholder.jpg";
 import { useExternal } from "../../technical/external-provider/content";
-
-const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
+import { SafeMountMapComponent } from "./map-component";
+import { MarkerData } from "./map-component/MapComponent";
 
 const Section = styled.section`
   margin-bottom: 124px;
@@ -116,11 +110,6 @@ export const Map = () => {
     }
   }, []);
 
-  const [isMounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, [setMounted]);
-
   const countReplace = useMemo(
     () => ({
       "{{count}}": markers.length > 0 ? markers.length.toString() : "..",
@@ -142,11 +131,7 @@ export const Map = () => {
         <FormContainer className="hidden md:block">
           <EventForm onSubmitPostalCode={handlePostalCode} />
         </FormContainer>
-        {isMounted ? (
-          <MapComponent ref={mapRef} markers={markers} />
-        ) : (
-          <MapPlaceholder />
-        )}
+        <SafeMountMapComponent markers={markers} />
         <CTAContainer>
           <Button
             {...({
