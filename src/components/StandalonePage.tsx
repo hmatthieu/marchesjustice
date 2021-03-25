@@ -50,13 +50,17 @@ const Content = styled.div`
     margin-bottom: 24px;
   }
 
-  p {
-    margin: 24px 0;
+  p:not(:empty) {
+    margin-top: 24px;
   }
 
   ul {
     padding-inline-start: 40px;
     list-style: disc;
+  }
+
+  ul + p {
+    margin-top: -44px;
   }
 `;
 
