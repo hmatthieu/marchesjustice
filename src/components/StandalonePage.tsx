@@ -50,7 +50,12 @@ const Content = styled.div`
     margin-bottom: 24px;
   }
 
-  p:not(:empty) {
+  p:not(:empty),
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     margin-top: 24px;
   }
 
