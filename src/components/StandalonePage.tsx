@@ -75,7 +75,15 @@ const PageContent = ({ page }: ContentProps) => {
           "{{signers_count}}",
           signers.length === 0 ? ".." : signers.length.toString()
         )
-        .replace("{{signers}}", generateSignersHTML(signers)),
+        .replace("{{signers}}", generateSignersHTML(signers))
+        .replace(/{{signers\.(.*?)}}/gi, (match, matchedCategory) =>
+          generateSignersHTML(
+            signers.filter(
+              ({ category }) =>
+                category.toLowerCase() === matchedCategory.toLowerCase()
+            )
+          )
+        ),
     [signers, document]
   );
 

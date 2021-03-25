@@ -4,6 +4,7 @@ export interface Signer {
   id: string;
   name: string;
   comment: string;
+  category: string;
 }
 
 function fetchSignersView() {
@@ -22,6 +23,7 @@ export function fetchSigners() {
             id: record.id,
             name: record.get("Nom de l'organisation"),
             comment: record.get("Commentaires"),
+            category: record.get("Catégories"),
           }))
         );
         fetchNextPage();
