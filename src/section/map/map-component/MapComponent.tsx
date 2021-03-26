@@ -91,7 +91,10 @@ export const MapComponent = forwardRef<LeafletMap, Props>(
           minZoom={4}
           scrollWheelZoom={false}
         >
-          <TileLayer url="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png" />
+          <TileLayer
+            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+            subdomains="abcd"
+          />
           <MarkerClusterGroup
             maxClusterRadius={30}
             iconCreateFunction={createClusterCustomIcon}
