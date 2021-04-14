@@ -79,7 +79,6 @@ async function fetchPosition(postalCode: string): Promise<Position> {
     if (!bestFeature) {
       throw new Error(`Could not fetch ${postalCode}`);
     }
-    console.log(bestFeature, features);
     return {
       latitude: bestFeature.geometry.coordinates[1],
       longitude: bestFeature.geometry.coordinates[0],
