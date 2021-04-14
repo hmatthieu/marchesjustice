@@ -3,6 +3,7 @@ const path = require(`path`);
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   const projectTemplate = path.resolve(`src/components/StandalonePage.tsx`);
+  const embedTemplate = path.resolve("src/components/StandaloneEmbedPage.tsx");
 
   return graphql(`
     query {
@@ -16,6 +17,19 @@ exports.createPages = ({ graphql, actions }) => {
           description
           bottomActionText
           bottomActionLink
+          image {
+            fixed {
+              src
+            }
+          }
+        }
+      }
+      allContentfulPageEmbed(filter: { enabled: { eq: true } }) {
+        nodes {
+          embedUrl
+          path
+          title
+          description
           image {
             fixed {
               src
@@ -44,6 +58,24 @@ exports.createPages = ({ graphql, actions }) => {
       createPage({
         path: page.fields.path,
         component: projectTemplate,
+        context: { page },
+      });
+    });
+
+    const embeds = result.data.allContentfulPageEmbed.nodes.map(node => ({
+      fields: {
+        ...node,
+        image: node.image ? node.image.fixed.src : undefined,
+      },
+      sys: {
+        id: node.contentful_id,
+      },
+    }));
+
+    embeds.forEach(page => {
+      createPage({
+        path: page.fields.path,
+        component: embedTemplate,
         context: { page },
       });
     });

@@ -8,3 +8,9 @@ export interface Standalone extends Partial<SEO> {
   bottomActionText?: string;
   bottomActionLink?: string;
 }
+
+export interface StandaloneEmbed extends Partial<SEO> {
+  path: string;
+  title: SEO["title"];
+  embedUrl: string;
+}
