@@ -15,7 +15,7 @@ const Img = styled.img<{
   width: number;
 }>`
   ${({ lowSrc, height, width }) => `
-    ${lowSrc && `background-image: url("${lowSrc}");`}
+    ${lowSrc && `background-image: url("${lowSrc}");`};
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;

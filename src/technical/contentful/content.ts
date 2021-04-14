@@ -13,6 +13,7 @@ interface ContentfulData {
     };
   };
   logo?: Entry<Image>;
+  background?: string;
 }
 
 export interface ContextData extends ContentfulData {

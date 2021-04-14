@@ -19,6 +19,24 @@ import { useExternal } from "../technical/external-provider/content";
 import { generateSignersHTML } from "../technical/generateSignersHTML";
 import { ContentfulImage } from "./ContentfulImage";
 import { handleCMSClick } from "../technical/handleCMSClick";
+import { TABLET } from "../constant/Breakpoints";
+
+const Background = styled.div<{ background: string }>`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-image: url(${({ background }) => background});
+  background-size: 250% auto;
+  background-position: top;
+  background-repeat: no-repeat;
+
+  @media (min-width: ${TABLET}px) {
+    background-size: contain;
+  }
+`;
 
 const Container = styled.article`
   max-width: 1280px;
@@ -74,7 +92,7 @@ interface ContentProps {
 }
 
 const PageContent = ({ page }: ContentProps) => {
-  const { texts, seo, logo } = useContent();
+  const { texts, seo, logo, background } = useContent();
   const { signers } = useExternal();
   const document = page.fields.content;
   const htmlContent = useMemo(
@@ -98,6 +116,7 @@ const PageContent = ({ page }: ContentProps) => {
 
   return (
     <>
+      <Background background={background} />
       <Helmet
         title={page.fields.title || seo.title}
         link={[{ rel: "icon", href: favicon }]}
@@ -135,7 +154,7 @@ const PageContent = ({ page }: ContentProps) => {
         <Link to="/9mai">
           <ContentfulImage
             image={page.fields.logo || logo}
-            className="mx-auto mb-12 w-auto h-52"
+            className="mx-auto mb-12 w-auto h-72"
           />
         </Link>
         <Content

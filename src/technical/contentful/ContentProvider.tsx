@@ -29,7 +29,7 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
       allContentfulLogo(limit: 1) {
         nodes {
           img {
-            fixed(width: 500, height: 400, resizingBehavior: PAD) {
+            fixed(width: 700, height: 560, resizingBehavior: PAD) {
               srcWebp
               src
               height
@@ -41,6 +41,15 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
             }
             title
             contentful_id
+          }
+        }
+      }
+      allContentfulBackground(limit: 1) {
+        nodes {
+          img {
+            file {
+              url
+            }
           }
         }
       }
@@ -72,6 +81,7 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
         id: data.allContentfulLogo.nodes[0].img.contentful_id,
       },
     },
+    background: data.allContentfulBackground.nodes[0].img.file.url,
   };
 
   return (

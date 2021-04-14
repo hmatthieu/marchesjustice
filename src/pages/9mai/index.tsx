@@ -9,12 +9,32 @@ import { Map } from "../../section/map";
 import { Actions } from "../../section/Actions";
 import { Footer } from "../../section/Footer";
 import { ExternalProvider } from "../../technical/external-provider/ContentProvider";
+import styled from "styled-components";
+import { TABLET } from "../../constant/Breakpoints";
+
+const Background = styled.div<{ background: string }>`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-image: url(${({ background }) => background});
+  background-size: 250% auto;
+  background-position: top;
+  background-repeat: no-repeat;
+
+  @media (min-width: ${TABLET}px) {
+    background-size: contain;
+  }
+`;
 
 const Mars28 = () => {
-  const { seo } = useContent();
+  const { seo, background } = useContent();
 
   return (
     <>
+      <Background background={background} />
       <Helmet
         title={seo.title}
         link={[{ rel: "icon", href: favicon }]}
