@@ -9,6 +9,20 @@ exports.createPages = ({ graphql, actions }) => {
     query {
       allContentfulPage(filter: { enabled: { eq: true } }) {
         nodes {
+          logo {
+            fixed(width: 500, height: 400, resizingBehavior: PAD) {
+              srcWebp
+              src
+              height
+              width
+            }
+            file {
+              contentType
+              url
+            }
+            title
+            contentful_id
+          }
           content {
             raw
           }
@@ -46,6 +60,18 @@ exports.createPages = ({ graphql, actions }) => {
     const pages = result.data.allContentfulPage.nodes.map(node => ({
       fields: {
         ...node,
+        logo: node.logo
+          ? {
+              fields: {
+                fixed: node.logo.fixed,
+                title: node.logo.title,
+                file: node.logo.file,
+              },
+              sys: {
+                id: node.logo.contentful_id,
+              },
+            }
+          : undefined,
         image: node.image ? node.image.fixed.src : undefined,
         content: JSON.parse(node.content.raw),
       },
