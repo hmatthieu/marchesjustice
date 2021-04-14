@@ -132,7 +132,7 @@ const PageContent = ({ page }: ContentProps) => {
         ]}
       />
       <Container>
-        <Link to="/28mars">
+        <Link to="/9mai">
           <ContentfulImage image={logo} className="mx-auto mb-12 w-auto h-52" />
         </Link>
         <Content
@@ -155,7 +155,7 @@ const PageContent = ({ page }: ContentProps) => {
             {page.fields.bottomActionText}
           </Button>
         ) : (
-          <Link to="/28mars" className="sm:w-auto w-full">
+          <Link to="/9mai" className="sm:w-auto w-full">
             <Button shadow={true} small={true}>
               {documentToPlainTextString(
                 texts[TextKey.BACK_TO_HOMEPAGE].document
