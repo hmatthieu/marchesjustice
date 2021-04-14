@@ -47,32 +47,43 @@ const CTAContainer = styled.div`
   display: flex;
 `;
 
-interface PositionStackData {
-  data: [
+interface APIAddressData {
+  features: [
     {
-      latitude: number;
-      longitude: number;
-      country_code: string;
+      type: "Feature";
+      geometry: {
+        type: "Point";
+        coordinates: [number, number];
+      };
+      properties: {
+        importance: number;
+      };
     }
   ];
 }
 
-async function fetchPosition(postalCode: string) {
+interface Position {
+  latitude: number;
+  longitude: number;
+}
+
+async function fetchPosition(postalCode: string): Promise<Position> {
   const response = await fetch(
-    "https://us-central1-loi-climat.cloudfunctions.net/forwards",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        postalCode,
-      }),
-    }
+    `https://api-adresse.data.gouv.fr/search/?q=${postalCode}&postcode=${postalCode}`
   );
   if (response.status === 200) {
-    const { data }: PositionStackData = await response.json();
-    return data.filter(({ country_code }) => country_code === "FRA")[0];
+    const { features }: APIAddressData = await response.json();
+    const bestFeature = features.sort(
+      (fA, fB) => fA.properties.importance - fB.properties.importance
+    )[0];
+    if (!bestFeature) {
+      throw new Error(`Could not fetch ${postalCode}`);
+    }
+    console.log(bestFeature, features);
+    return {
+      latitude: bestFeature.geometry.coordinates[1],
+      longitude: bestFeature.geometry.coordinates[0],
+    };
   } else {
     throw new Error(response.statusText);
   }
@@ -131,7 +142,7 @@ export const Map = () => {
         <FormContainer className="hidden md:block">
           <EventForm onSubmitPostalCode={handlePostalCode} />
         </FormContainer>
-        <SafeMountMapComponent markers={markers} />
+        <SafeMountMapComponent markers={markers} ref={mapRef} />
         <CTAContainer>
           <Button
             {...({
