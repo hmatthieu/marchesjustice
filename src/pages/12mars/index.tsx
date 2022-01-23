@@ -50,7 +50,7 @@ const Mars28 = () => {
             name: "viewport",
             content: "width=device-width, initial-scale=0.7",
           },
-          { property: "og:url", content: "https://marcheclimat.fr/9mai/" },
+          { property: "og:url", content: "https://marcheclimat.fr/12mars/" },
           { property: "og:type", content: "website" },
           { property: "og:title", content: seo.title },
           {

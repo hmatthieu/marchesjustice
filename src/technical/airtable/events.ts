@@ -9,8 +9,8 @@ export interface EventMap {
 }
 
 function fetchEventsView() {
-  return Airtable.base("appbr6QYcIExsuKTU")("tblA5Nun64zw5OZMs").select({
-    view: "viw9qOJ6Ziy344rcQ",
+  return Airtable.base("appePUL924AzQ6Hac")("tblZVmGojioz9DZ4P").select({
+    view: "viwfbd67yqQ2ZnmS0",
   });
 }
 
