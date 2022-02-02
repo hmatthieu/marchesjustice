@@ -23,7 +23,7 @@ export function fetchSigners() {
             id: record.id,
             name: record.get("Nom de l'organisation"),
             comment: record.get("Commentaires"),
-            category: record.get("Catégories") || "",
+            category: record.get("Catégorie") || "",
           }))
         );
         fetchNextPage();
