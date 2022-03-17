@@ -48,13 +48,6 @@
           }
         ]
       }
-    ],
-    "redirects": [
-      {
-        "source": "/",
-        "destination": "/12mars/",
-        "type": 301
-      }
     ]
   }
 }

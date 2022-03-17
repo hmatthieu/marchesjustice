@@ -35,8 +35,8 @@ export const Share = () => {
       {shares.map((share, index) => (
         <Button
           {...({
-            key: `${share.href}_${index}`,
-            href: share.href,
+            key: `${share.link}_${index}`,
+            href: share.link,
             target: "_blank",
             as: "a",
             shadow: true,

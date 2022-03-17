@@ -23,7 +23,9 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
           value {
             raw
           }
-          href
+          link {
+            link
+          }
         }
       }
       allContentfulLogo(limit: 1) {
@@ -66,7 +68,7 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
         ...acc,
         [node.key]: {
           document: JSON.parse(node.value.raw),
-          href: node.href,
+          link: node.link?.link,
         },
       }),
       {}

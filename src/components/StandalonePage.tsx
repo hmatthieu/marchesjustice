@@ -20,6 +20,8 @@ import { generateSignersHTML } from "../technical/generateSignersHTML";
 import { ContentfulImage } from "./ContentfulImage";
 import { handleCMSClick } from "../technical/handleCMSClick";
 import { TABLET } from "../constant/Breakpoints";
+import { BottomColorBar, TopColorBar } from "./ColorBar";
+import { GlobalStyles } from "./GlobalStyles";
 
 const Background = styled.div<{ background: string }>`
   position: absolute;
@@ -116,6 +118,7 @@ const PageContent = ({ page }: ContentProps) => {
 
   return (
     <>
+      <GlobalStyles />
       <Background background={background} />
       <Helmet
         title={page.fields.title || seo.title}
@@ -134,7 +137,7 @@ const PageContent = ({ page }: ContentProps) => {
           },
           {
             property: "og:url",
-            content: `https://marcheclimat.fr/${page.fields.path}`,
+            content: `https://marche9avril.fr/${page.fields.path}`,
           },
           { property: "og:type", content: "website" },
           { property: "og:title", content: page.fields.title || seo.title },
@@ -186,6 +189,8 @@ const PageContent = ({ page }: ContentProps) => {
           </Link>
         )}
       </Container>
+      <TopColorBar />
+      <BottomColorBar />
     </>
   );
 };

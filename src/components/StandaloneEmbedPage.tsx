@@ -41,7 +41,7 @@ const PageContent = ({ page }: ContentProps) => {
           },
           {
             property: "og:url",
-            content: `https://marcheclimat.fr/${page.fields.path}`,
+            content: `https://marche9avril.fr/${page.fields.path}`,
           },
           { property: "og:type", content: "website" },
           { property: "og:title", content: page.fields.title || seo.title },

@@ -5,7 +5,28 @@
 body {
     margin: 0;
     color: black;
-    font-family: "Flama";
+    font-family: "Barlow";
+}
+
+@font-face {
+    font-family: "Monument";
+    src: url("/fonts/monument/monumentextended-ultrabold.otf");
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Barlow";
+    src: url("/fonts/barlow/BarlowCondensed-Bold.otf");
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Barlow";
+    src: url("/fonts/barlow/BarlowCondensed-Medium.otf");
+    font-weight: 500;
+    font-display: swap;
 }
 
 @font-face {

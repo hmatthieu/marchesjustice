@@ -3,13 +3,13 @@ import { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 import { rotate } from "./rotate";
 import { Loading as LoadingIcon } from "../assets/images/Loading";
-import { FLAMA, KAWARU } from "../constant/Fonts";
-import { PRIMARY } from "../constant/Colors";
+import { BARLOW, MONUMENT } from "../constant/Fonts";
+import { PRIMARY, TEXT_DARK } from "../constant/Colors";
 
 const Loading = styled(LoadingIcon)`
   height: 40px;
   animation: 1s ${rotate} infinite linear;
-  color: white;
+  color: ${TEXT_DARK};
   margin-right: 12px;
 `;
 
@@ -24,11 +24,11 @@ const BaseButton = styled.button<ButtonBaseProps>`
   align-items: center;
   justify-content: center;
   background-color: ${PRIMARY};
+  color: ${TEXT_DARK};
   outline: none;
   border: none;
   box-shadow: none;
   text-decoration: none;
-  color: white;
   font-size: 18px;
   height: 60px;
   text-align: center;
@@ -40,13 +40,13 @@ const BaseButton = styled.button<ButtonBaseProps>`
     small
       ? `
       
-    font-family: ${FLAMA};
+    font-family: ${BARLOW};
     font-style: normal;
     font-weight: 700;
     text-transform: none;
     `
       : `
-      font-family: ${KAWARU};
+      font-family: ${MONUMENT};
       text-transform: uppercase;
     `}
 

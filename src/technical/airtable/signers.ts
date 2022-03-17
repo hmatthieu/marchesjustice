@@ -8,8 +8,8 @@ export interface Signer {
 }
 
 function fetchSignersView() {
-  return Airtable.base("app8ae8XNOjZ4waOs")("tblwZrIIFk18chNZI").select({
-    view: "viwue4yZtqyOPqPR0",
+  return Airtable.base("app1nfAluvaaX90MT")("tblPPhRCscZNddiYv").select({
+    view: "viw3krGAmvG8f9LRE",
   });
 }
 

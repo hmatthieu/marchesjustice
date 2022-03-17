@@ -10,10 +10,12 @@ import { Checkbox } from "../../components/input/Checkbox";
 import { useContent } from "../../technical/contentful/content";
 import { TextKey } from "../../technical/contentful/text";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import { TEXT_DARK } from "../../constant/Colors";
 
 const Container = styled.div`
   max-width: 1024px;
   margin: auto;
+  color: ${TEXT_DARK};
 `;
 
 const HTMLForm = styled.form`

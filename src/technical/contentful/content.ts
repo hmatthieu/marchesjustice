@@ -9,7 +9,7 @@ interface ContentfulData {
   texts: {
     [key: string]: {
       document: Document;
-      href?: string;
+      link?: string;
     };
   };
   logo?: Entry<Image>;

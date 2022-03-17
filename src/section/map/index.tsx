@@ -145,7 +145,7 @@ export const Map = () => {
         <CTAContainer>
           <Button
             {...({
-              href: texts[TextKey.MAP_CTA].href,
+              href: texts[TextKey.MAP_CTA].link,
               target: "_blank",
               as: "a",
               shadow: true,
