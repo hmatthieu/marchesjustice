@@ -16,7 +16,6 @@ const Container = styled.header`
 
 const TextContainer = styled.div`
   text-align: center;
-  font-size: 26px;
 
   p {
     margin: 2rem 0;
@@ -53,7 +52,7 @@ export const Header = () => {
     <Container>
       <ContentfulImage
         image={logo}
-        className="mx-auto sm:mt-44 mt-24 w-auto h-72"
+        className="mx-auto md:mt-56 mt-36 mb-20 w-auto md:h-44 h-36"
       />
       <TextContainer
         ref={textContainerRef}

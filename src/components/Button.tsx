@@ -29,7 +29,7 @@ const BaseButton = styled.button<ButtonBaseProps>`
   border: none;
   box-shadow: none;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 22px;
   height: 60px;
   text-align: center;
   border-radius: 3px;
@@ -48,6 +48,7 @@ const BaseButton = styled.button<ButtonBaseProps>`
       : `
       font-family: ${MONUMENT};
       text-transform: uppercase;
+      letter-spacing: 0.08em;
     `}
 
   ${({ shadow }: ButtonBaseProps) =>

@@ -4,7 +4,7 @@ import { GREEN, PINK, PURPLE, RED, YELLOW } from "../constant/Colors";
 const COLORS = ["#000000", RED, PURPLE, PINK, GREEN, YELLOW];
 
 const ColorBar = styled.div<{ reversed?: boolean }>`
-  min-height: 33px;
+  min-height: 25px;
   background: linear-gradient(
     to ${({ reversed }) => (reversed ? "left" : "right")},
     ${COLORS.map(

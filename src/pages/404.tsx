@@ -8,7 +8,7 @@ import { documentToPlainTextString } from "@contentful/rich-text-plain-text-rend
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { PRIMARY } from "../constant/Colors";
-import { KAWARU } from "../constant/Fonts";
+import { MONUMENT } from "../constant/Fonts";
 
 const Container = styled.article`
   max-width: 1280px;
@@ -19,7 +19,7 @@ const Container = styled.article`
 const NoContent = styled.div`
   h1 {
     color: ${PRIMARY};
-    font-family: ${KAWARU};
+    font-family: ${MONUMENT};
     text-transform: uppercase;
     font-size: 28px;
   }

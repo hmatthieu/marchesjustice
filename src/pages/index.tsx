@@ -22,7 +22,7 @@ const Background = styled.div<{ background: string }>`
   right: 0;
   z-index: -1;
   background-image: url(${({ background }) => background});
-  background-size: 250% auto;
+  background-size: 175% auto;
   background-position: top;
   background-repeat: no-repeat;
 

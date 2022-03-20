@@ -9,6 +9,7 @@ import { useMemo } from "react";
 const Container = styled.div`
   color: ${TEXT_LIGHT};
   font-family: ${MONUMENT};
+  letter-spacing: 0.025em;
   text-transform: uppercase;
   font-size: 28px;
   text-align: center;

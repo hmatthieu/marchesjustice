@@ -6,6 +6,13 @@ body {
     margin: 0;
     color: black;
     font-family: "Barlow";
+    font-size: 26px;
+}
+
+@media (min-width: 800px) {
+    body {
+        font-size: 22px;
+    }
 }
 
 @font-face {
@@ -26,40 +33,5 @@ body {
     font-family: "Barlow";
     src: url("/fonts/barlow/BarlowCondensed-Medium.otf");
     font-weight: 500;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Flama";
-    src: url("/fonts/flama/Flama-Medium.otf");
-    font-weight: 500;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Flama";
-    src: url("/fonts/flama/Flama-Bold.otf");
-    font-weight: 700;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Flama";
-    src: url("/fonts/flama/Flama-LightItalic.otf");
-    font-weight: 300;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Flama";
-    src: url("/fonts/flama/Flama-Light.otf");
-    font-weight: 300;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Kawaru";
-    src: url("/fonts/kawaru/Kawaru.ttf");
     font-display: swap;
 }

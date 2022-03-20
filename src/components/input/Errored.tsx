@@ -15,7 +15,7 @@ const ErroredContainer = styled.div`
 
 const ErrorContainer = styled.div`
   position: absolute;
-  top: calc(100%);
+  top: calc(90%);
   left: 0;
   right: 0;
 `;

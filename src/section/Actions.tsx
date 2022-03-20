@@ -5,7 +5,7 @@ import { TextKey } from "../technical/contentful/text";
 import styled from "styled-components";
 import { PRIMARY } from "../constant/Colors";
 import { Ratio } from "../components/Ratio";
-import { KAWARU } from "../constant/Fonts";
+import { MONUMENT } from "../constant/Fonts";
 
 const data = [
   {
@@ -71,7 +71,7 @@ const ItemTag = styled.mark`
 `;
 
 const ItemTitle = styled.h4`
-  font-family: ${KAWARU};
+  font-family: ${MONUMENT};
   font-size: 18px;
   text-transform: uppercase;
 `;

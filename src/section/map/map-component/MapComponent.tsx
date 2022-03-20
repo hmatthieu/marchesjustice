@@ -8,7 +8,7 @@ import {
   TileLayer,
 } from "react-leaflet";
 import "./style.css";
-import { FLAMA } from "../../../constant/Fonts";
+import { BARLOW } from "../../../constant/Fonts";
 import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 
@@ -40,7 +40,7 @@ const Popup = styled(PopupLeaflet)`
 `;
 
 const Link = styled.a`
-  font-family: ${FLAMA};
+  font-family: ${BARLOW};
   font-weight: 500;
   font-size: 18px;
   color: black !important;

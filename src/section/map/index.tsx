@@ -137,7 +137,7 @@ export const Map = () => {
         className="block md:hidden"
         onSubmitPostalCode={handlePostalCode}
       />
-      <Container className="mt-0 md:mt-80">
+      <Container className="mt-0 md:mt-96">
         <FormContainer className="hidden md:block">
           <EventForm onSubmitPostalCode={handlePostalCode} />
         </FormContainer>

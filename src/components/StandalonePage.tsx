@@ -2,7 +2,7 @@ import { Entry } from "../technical/contentful/entry";
 import { Standalone } from "../technical/contentful/standalone";
 import styled from "styled-components";
 import { PRIMARY } from "../constant/Colors";
-import { KAWARU } from "../constant/Fonts";
+import { MONUMENT } from "../constant/Fonts";
 import { useContent } from "../technical/contentful/content";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { TextKey } from "../technical/contentful/text";
@@ -31,7 +31,7 @@ const Background = styled.div<{ background: string }>`
   right: 0;
   z-index: -1;
   background-image: url(${({ background }) => background});
-  background-size: 250% auto;
+  background-size: 175% auto;
   background-position: top;
   background-repeat: no-repeat;
 
@@ -48,10 +48,11 @@ const Container = styled.article`
 
 const Content = styled.div`
   white-space: pre-wrap;
+  font-size: 18px;
 
   h1 {
     color: ${PRIMARY};
-    font-family: ${KAWARU};
+    font-family: ${MONUMENT};
     text-transform: uppercase;
     font-size: 28px;
   }
@@ -68,6 +69,14 @@ const Content = styled.div`
   h4 {
     color: ${PRIMARY};
     margin-bottom: 24px;
+  }
+
+  h5 {
+    font-size: 22px;
+  }
+
+  h6 {
+    font-size: 20px;
   }
 
   p:not(:empty),
@@ -154,10 +163,10 @@ const PageContent = ({ page }: ContentProps) => {
         ]}
       />
       <Container>
-        <Link to="/12mars">
+        <Link to="/">
           <ContentfulImage
             image={page.fields.logo || logo}
-            className="mx-auto mb-12 w-auto h-72"
+            className="mx-auto md:my-44 my-16 w-auto md:h-44 h-36"
           />
         </Link>
         <Content
@@ -170,7 +179,7 @@ const PageContent = ({ page }: ContentProps) => {
           <Button
             shadow={true}
             small={true}
-            className="sm:w-auto w-full inline-flex"
+            className="sm:w-auto w-full inline-flex mt-12"
             {...({
               as: "a",
               href: page.fields.bottomActionLink,
@@ -180,8 +189,8 @@ const PageContent = ({ page }: ContentProps) => {
             {page.fields.bottomActionText}
           </Button>
         ) : (
-          <Link to="/12mars" className="sm:w-auto w-full">
-            <Button shadow={true} small={true}>
+          <Link to="/" className="sm:w-auto w-full">
+            <Button shadow={true} small={true} className="mt-12">
               {documentToPlainTextString(
                 texts[TextKey.BACK_TO_HOMEPAGE].document
               )}
