@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { GREEN, PINK, PURPLE, RED, YELLOW } from "../constant/Colors";
+import { YELLOW } from "../constant/Colors";
 
-const COLORS = ["#000000", RED, PURPLE, PINK, GREEN, YELLOW];
+const COLORS = [YELLOW];
 
 const ColorBar = styled.div<{ reversed?: boolean }>`
   min-height: 25px;

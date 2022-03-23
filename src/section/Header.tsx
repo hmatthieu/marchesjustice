@@ -6,7 +6,7 @@ import { useContent } from "../technical/contentful/content";
 import { TextKey } from "../technical/contentful/text";
 import { ContentfulImage } from "../components/ContentfulImage";
 import { handleCMSClick } from "../technical/handleCMSClick";
-import { PINK } from "../constant/Colors";
+import { YELLOW } from "../constant/Colors";
 
 const Container = styled.header`
   max-width: 800px;
@@ -32,7 +32,7 @@ const TextContainer = styled.div`
   a {
     text-decoration: underline;
     font-weight: bold;
-    color: ${PINK};
+    color: ${YELLOW};
   }
 `;
 
