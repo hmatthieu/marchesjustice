@@ -7,7 +7,6 @@ import { TextKey } from "../technical/contentful/text";
 import { ContentfulImage } from "../components/ContentfulImage";
 import { handleCMSClick } from "../technical/handleCMSClick";
 import { YELLOW } from "../constant/Colors";
-import storySrc from "../assets/video/story.mp4";
 import storyBg from "../assets/video/story.png";
 
 const Container = styled.header`
@@ -92,7 +91,7 @@ export const Header = () => {
         onLoadedMetadata={playVideo}
         muted={true}
       >
-        <source src={storySrc} type="video/mp4" />
+        <source src="https://firebasestorage.googleapis.com/v0/b/marcheavril-fcd77.appspot.com/o/story.mp4?alt=media" type="video/mp4" />
       </Video>
       <TextContainer
         ref={textContainerRef}
