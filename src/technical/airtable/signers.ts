@@ -1,4 +1,4 @@
-import { Airtable } from "./";
+import { Airtable } from './Airtable';
 
 export interface Signer {
   id: string;
@@ -8,8 +8,8 @@ export interface Signer {
 }
 
 function fetchSignersView() {
-  return Airtable.base("app1nfAluvaaX90MT")("tblPPhRCscZNddiYv").select({
-    view: "viw3krGAmvG8f9LRE",
+  return Airtable.base("appNaCFXQSciFES5k")("tblGenCN7zfDAFN77").select({
+    view: "viw4poDIYsrZEqbQd",
   });
 }
 
@@ -23,7 +23,7 @@ export function fetchSigners() {
             id: record.id,
             name: record.get("Nom de l'organisation"),
             comment: record.get("Commentaires"),
-            category: record.get("Catégorie") || "",
+            category: record.get("Nature de l'organisation") || "",
           }))
         );
         fetchNextPage();

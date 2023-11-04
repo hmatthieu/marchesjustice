@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export default () => {
   useEffect(() => {
-    document.location = "/";
+    document.location = "/ajoutezunemarche";
   }, []);
 
   return null;

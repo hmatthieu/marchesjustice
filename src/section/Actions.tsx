@@ -5,7 +5,7 @@ import { TextKey } from "../technical/contentful/text";
 import styled from "styled-components";
 import { PRIMARY } from "../constant/Colors";
 import { Ratio } from "../components/Ratio";
-import { MONUMENT } from "../constant/Fonts";
+import { BOWLBY } from "../constant/Fonts";
 
 const data = [
   {
@@ -71,8 +71,8 @@ const ItemTag = styled.mark`
 `;
 
 const ItemTitle = styled.h4`
-  font-family: ${MONUMENT};
-  font-size: 18px;
+  font-family: ${BOWLBY};
+  font-size: 14px;
   text-transform: uppercase;
 `;
 

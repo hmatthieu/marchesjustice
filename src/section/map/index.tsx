@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useCallback, useMemo, useRef } from "react";
-import { EventForm } from "./Form";
 import { useContent } from "../../technical/contentful/content";
 import { TextKey } from "../../technical/contentful/text";
 import styled from "styled-components";
@@ -94,7 +93,11 @@ export const Map = () => {
   const markers = useMemo<MarkerData[]>(
     () =>
       events.map(event => ({
-        text: event.city,
+        city: event.city,
+        date: event.date,
+        where: event.where,
+        when: event.when,
+        subject: event.subject,
         href: event.URL,
         position: event.position,
       })),
@@ -133,15 +136,23 @@ export const Map = () => {
         document={texts[TextKey.MAP_HEADER].document}
         replaces={countReplace}
       />
-      <EventForm
-        className="block md:hidden"
-        onSubmitPostalCode={handlePostalCode}
-      />
-      <Container className="mt-0 md:mt-96">
-        <FormContainer className="hidden md:block">
-          <EventForm onSubmitPostalCode={handlePostalCode} />
-        </FormContainer>
+      {/*
+        <EventForm
+          className="block md:hidden"
+          onSubmitPostalCode={handlePostalCode}
+        />
+      */}
+      <Container className="mt-0 --md:mt-96">
+        {/*
+          <FormContainer className="hidden md:block">
+            <EventForm onSubmitPostalCode={handlePostalCode} />
+          </FormContainer>
+        <iframe width="100%" height="600px" frameBorder="0"
+                src="//umap.openstreetmap.fr/fr/map/carte-des-mobilisations_936980#5/46.698481/2.549047?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=undefined&captionBar=false&captionMenus=true"></iframe>
+
+        */}
         <SafeMountMapComponent markers={markers} ref={mapRef} />
+
         <CTAContainer>
           <Button
             {...({

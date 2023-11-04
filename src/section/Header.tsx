@@ -6,13 +6,23 @@ import { useContent } from "../technical/contentful/content";
 import { TextKey } from "../technical/contentful/text";
 import { ContentfulImage } from "../components/ContentfulImage";
 import { handleCMSClick } from "../technical/handleCMSClick";
-import { YELLOW } from "../constant/Colors";
-import storyBg from "../assets/video/story.png";
+import { PRIMARY } from "../constant/Colors";
+import storyBg from "../assets/video/story.webp";
 
 const Container = styled.header`
   max-width: 800px;
   padding: 0 24px;
   margin: 0 auto;
+`;
+
+const Video = styled.video`
+  background-image: url(${storyBg});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: auto;
+  width: 552px;
+  height: 310px;
 `;
 
 const TextContainer = styled.div`
@@ -33,18 +43,8 @@ const TextContainer = styled.div`
   a {
     text-decoration: underline;
     font-weight: bold;
-    color: ${YELLOW};
+    color: ${PRIMARY};
   }
-`;
-
-const Video = styled.video`
-  background-image: url(${storyBg});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: auto;
-  width: 552px;
-  height: 310px;
 `;
 
 export const Header = () => {
@@ -58,6 +58,13 @@ export const Header = () => {
     }
   };
 
+  useLayoutEffect(() => {
+    if (video.current) {
+      video.current.defaultMuted = true;
+      video.current.volume = 0.1;
+    }
+  }, [video]);
+
   useEffect(() => {
     if (textContainerRef.current) {
       textContainerRef.current.querySelectorAll("a").forEach(element => {
@@ -66,18 +73,11 @@ export const Header = () => {
     }
   }, []);
 
-  useLayoutEffect(() => {
-    if (video.current) {
-      video.current.defaultMuted = true;
-      video.current.volume = 0.1;
-    }
-  }, [video]);
-
   return (
     <Container>
       <ContentfulImage
         image={logo}
-        className="mx-auto md:mt-56 mt-36 mb-20 w-auto md:h-44 h-36"
+        className="mx-auto md:mt-16 mt-8 mb-24 w-auto md:h-96 h-80"
       />
       <Video
         ref={video}
@@ -91,7 +91,7 @@ export const Header = () => {
         onLoadedMetadata={playVideo}
         muted={true}
       >
-        <source src="https://firebasestorage.googleapis.com/v0/b/marcheavril-fcd77.appspot.com/o/story.mp4?alt=media" type="video/mp4" />
+        <source src="https://firebasestorage.googleapis.com/v0/b/marchesjustice.appspot.com/o/23%20SEPTEMBRE%202023%20_%20REPRENONS%20LA%20RUE%2C%20TOUS%20ENSEMBLE%20CONTRE%20MACRON%20ET%20SON%20MONDE.mp4?alt=media" type="video/mp4" />
       </Video>
       <TextContainer
         ref={textContainerRef}

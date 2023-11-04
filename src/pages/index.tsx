@@ -11,7 +11,6 @@ import { Footer } from "../section/Footer";
 import { ExternalProvider } from "../technical/external-provider/ContentProvider";
 import styled from "styled-components";
 import { TABLET } from "../constant/Breakpoints";
-import { BottomColorBar, TopColorBar } from "../components/ColorBar";
 import { GlobalStyles } from "../components/GlobalStyles";
 
 const Background = styled.div<{ background: string }>`
@@ -73,8 +72,6 @@ const Avril9 = () => {
       {false && <Actions /> // Let's hide actions for now...
       }
       <Footer />
-      <TopColorBar />
-      <BottomColorBar />
     </>
   );
 };

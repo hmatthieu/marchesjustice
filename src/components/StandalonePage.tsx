@@ -2,7 +2,7 @@ import { Entry } from "../technical/contentful/entry";
 import { Standalone } from "../technical/contentful/standalone";
 import styled from "styled-components";
 import { PRIMARY } from "../constant/Colors";
-import { MONUMENT } from "../constant/Fonts";
+import { BOWLBY } from "../constant/Fonts";
 import { useContent } from "../technical/contentful/content";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { TextKey } from "../technical/contentful/text";
@@ -20,7 +20,6 @@ import { generateSignersHTML } from "../technical/generateSignersHTML";
 import { ContentfulImage } from "./ContentfulImage";
 import { handleCMSClick } from "../technical/handleCMSClick";
 import { TABLET } from "../constant/Breakpoints";
-import { BottomColorBar, TopColorBar } from "./ColorBar";
 import { GlobalStyles } from "./GlobalStyles";
 
 const Background = styled.div<{ background: string }>`
@@ -52,9 +51,9 @@ const Content = styled.div`
 
   h1 {
     color: ${PRIMARY};
-    font-family: ${MONUMENT};
+    font-family: ${BOWLBY};
     text-transform: uppercase;
-    font-size: 28px;
+    font-size: 20px;
   }
 
   h2 {
@@ -166,7 +165,7 @@ const PageContent = ({ page }: ContentProps) => {
         <Link to="/">
           <ContentfulImage
             image={page.fields.logo || logo}
-            className="mx-auto md:my-44 my-16 w-auto md:h-44 h-36"
+            className="mx-auto md:mt-16 mt-8 mb-24 w-auto md:h-96 h-80"
           />
         </Link>
         <Content
@@ -198,8 +197,6 @@ const PageContent = ({ page }: ContentProps) => {
           </Link>
         )}
       </Container>
-      <TopColorBar />
-      <BottomColorBar />
     </>
   );
 };

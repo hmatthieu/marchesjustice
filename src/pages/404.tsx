@@ -8,7 +8,7 @@ import { documentToPlainTextString } from "@contentful/rich-text-plain-text-rend
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { PRIMARY } from "../constant/Colors";
-import { MONUMENT } from "../constant/Fonts";
+import { BOWLBY } from "../constant/Fonts";
 
 const Container = styled.article`
   max-width: 1280px;
@@ -19,9 +19,9 @@ const Container = styled.article`
 const NoContent = styled.div`
   h1 {
     color: ${PRIMARY};
-    font-family: ${MONUMENT};
+    font-family: ${BOWLBY};
     text-transform: uppercase;
-    font-size: 28px;
+    font-size: 24px;
   }
 
   h2 {

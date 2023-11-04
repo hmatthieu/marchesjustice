@@ -1,16 +1,15 @@
 import * as React from "react";
 import { forwardRef, useState } from "react";
 import styled from "styled-components";
-import {
-  Map as LeafletMap,
-  Marker,
-  Popup as PopupLeaflet,
-  TileLayer,
-} from "react-leaflet";
+import { Map as LeafletMap, Marker, Popup as PopupLeaflet, TileLayer, } from "react-leaflet";
 import "./style.css";
-import { BARLOW } from "../../../constant/Fonts";
+import { BOWLBY, KLIMA } from "../../../constant/Fonts";
 import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
+import moment from 'moment';
+import 'moment/locale/fr'
+
+moment.locale('fr');
 
 const MapContainer = styled.div`
   height: 100%;
@@ -28,10 +27,11 @@ const Popup = styled(PopupLeaflet)`
   }
 
   .leaflet-popup-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 14px 35px;
+    margin: 5px 20px 24px 11px;
+    
+    p {
+      margin: 0;
+    }
   }
 
   .leaflet-popup-close-button {
@@ -39,13 +39,27 @@ const Popup = styled(PopupLeaflet)`
   }
 `;
 
-const Link = styled.a`
-  font-family: ${BARLOW};
-  font-weight: 500;
-  font-size: 18px;
+const City = styled.p`
+  font-family: ${BOWLBY};
+  font-weight: 400;
+  line-height: 34px;
+  font-size: 22px;
   color: black !important;
-  text-decoration: underline;
   white-space: nowrap;
+`;
+
+const Text = styled.p`
+  font-family: ${KLIMA};
+  font-weight: 400;
+  line-height: 14px;
+  font-size: 12px;
+  color: black !important;
+  white-space: nowrap;
+  margin: 2px 0;
+`;
+
+const Link = styled.a`
+  text-decoration: underline;
 `;
 
 interface Cluster {
@@ -61,8 +75,12 @@ const createClusterCustomIcon = (cluster: Cluster) =>
   });
 
 export interface MarkerData {
-  text: string;
-  href: string;
+  city: string;
+  date: string;
+  when: string;
+  where: string;
+  subject?: string,
+  href?: string;
   position: [number, number];
 }
 
@@ -71,7 +89,7 @@ export interface Props {
 }
 
 export const MapComponent = forwardRef<LeafletMap, Props>(
-  ({ markers }, ref) => {
+  ({ markers  }, ref) => {
     const [markerIcon] = useState(
       new Icon({
         iconUrl: require("../../../assets/images/marker.svg"),
@@ -102,14 +120,22 @@ export const MapComponent = forwardRef<LeafletMap, Props>(
           >
             {markers.map((marker, index) => (
               <Marker
-                key={`${marker.text}_${index}`}
+                key={`${marker.where}_${index}`}
                 position={marker.position}
                 icon={markerIcon}
               >
                 <Popup>
-                  <Link href={marker.href} rel="noopener" target="_blank">
-                    {marker.text}
-                  </Link>
+                  <City>{marker.city}</City>
+                  {marker.subject && (
+                    <Text style={{ fontWeight: 600 }}>{marker.subject}</Text>
+                  )}
+                  <Text>{marker.where}</Text>
+                  <Text>{marker.when}</Text>
+                  {marker.href && (
+                    <Link href={marker.href} rel="noopener" target="_blank">
+                      <Text>Lire l’appel →</Text>
+                    </Link>
+                  )}
                 </Popup>
               </Marker>
             ))}

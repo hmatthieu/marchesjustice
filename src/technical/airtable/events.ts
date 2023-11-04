@@ -1,16 +1,20 @@
-import { Airtable } from "./";
+import { Airtable } from './Airtable';
 
 export interface EventMap {
   id: string;
   city: string;
   postalCode: string;
-  URL: string;
+  date: string;
+  where: string;
+  when: string;
+  subject?: string;
+  URL?: string;
   position: [number, number];
 }
 
 function fetchEventsView() {
-  return Airtable.base("app28NDeZpIAu6yWe")("tblTQEeoIXksGnFgO").select({
-    view: "viwzW5r1AgliIg2gk",
+  return Airtable.base("apprRq5jn6atYUvi2")("tblsLmTYS3EfEOqwm").select({
+    view: "viwSVI5iKwD1VFpZI",
   });
 }
 
@@ -41,7 +45,11 @@ export function fetchEvents() {
               return {
                 id: record.id,
                 city: record.get("Ville"),
+                when: record.get("Lieu de rendez-vous") || "",
+                date: record.get('Date') || '',
+                where: record.get("Heure de départ") || "",
                 postalCode: record.get("Code postal"),
+                subject: record.get("Sujet"),
                 URL: record.get("URL"),
                 position,
               };

@@ -23,7 +23,11 @@ const EmbedMap = () => {
   const markers = useMemo<MarkerData[]>(
     () =>
       events.map(event => ({
-        text: event.city,
+        city: event.city,
+        date: event.date,
+        where: event.where,
+        when: event.when,
+        subject: event.subject,
         href: event.URL,
         position: event.position,
       })),

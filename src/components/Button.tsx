@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 import { rotate } from "./rotate";
 import { Loading as LoadingIcon } from "../assets/images/Loading";
-import { BARLOW, MONUMENT } from "../constant/Fonts";
+import { BOWLBY } from "../constant/Fonts";
 import { PRIMARY, TEXT_DARK } from "../constant/Colors";
 
 const Loading = styled(LoadingIcon)`
@@ -14,6 +14,7 @@ const Loading = styled(LoadingIcon)`
 `;
 
 interface ButtonBaseProps {
+  backgroundColor?: string;
   shadow?: boolean;
   small?: boolean;
 }
@@ -23,33 +24,20 @@ const BaseButton = styled.button<ButtonBaseProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${PRIMARY};
+  background-color: ${({ backgroundColor }) => backgroundColor || PRIMARY};
   color: ${TEXT_DARK};
   outline: none;
   border: none;
   box-shadow: none;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 18px;
   height: 60px;
   text-align: center;
   border-radius: 3px;
   padding: 0 24px;
   min-width: 16rem;
-
-  ${({ small }: ButtonBaseProps) =>
-    small
-      ? `
-      
-    font-family: ${BARLOW};
-    font-style: normal;
-    font-weight: 700;
-    text-transform: none;
-    `
-      : `
-      font-family: ${MONUMENT};
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    `}
+  font-family: ${BOWLBY};
+  text-transform: uppercase;
 
   ${({ shadow }: ButtonBaseProps) =>
     shadow && `box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);`}
